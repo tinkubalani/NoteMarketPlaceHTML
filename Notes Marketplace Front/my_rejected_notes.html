@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no">
+    
+    <!-- Title -->
+    <title>Notes Marketplace</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon/favicon.ico">    
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">   
+    
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="css/font-awesome/font-awesome.min.css">
+   
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+    
+   <!-- Header Section -->
+    <section id="general-header">
+
+        <!-- Navigation Panel-->
+        <nav class="navbar fixed-top navbar-expand-lg">
+
+            <div class="container">
+
+                <!-- Navbar Top Logo -->
+                <a class="navbar-brand" href="home.html">
+                    <img src="images/homepage/logo.png" alt="top-logo">
+                </a>
+
+                <!-- Mobile Menu Button-->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-menu-navbar" aria-controls="mobile-menu-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span id=mobile-menu-button>   
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mobile-menu-navbar">
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="search_page.html">Search Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard_1.html">Sell Your Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="buyer_request.html">Buyer Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="FAQ_page.html">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact_us_page.html">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+
+                           <!-- Dropdown Menu Under User Icon-->
+                            <div class="dropdown-menu-profiles">
+                                <a class="user-icon-profile nav-link" href="#"><img src="images/User-Profile/user-img.png" alt="customer-image"></a>
+                                <div class="dropdown-box">
+                                    <a href="user_profile.html">My Profile</a>
+                                    <a href="my_downloads.html">My Download</a>
+                                    <a href="my_sold_notes.html">My Sold Notes</a>
+                                    <a href="my_rejected_notes.html">My Rejected Notes</a>
+                                    <a href="change_password.html">Change Password</a>
+                                    <a href="#">logout</a>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                      
+                       <!-- Logout Button-->
+                        <div class="log-in-out-btn">
+                            <a href="login.html"><button>Logout</button></a>
+                        </div>
+
+                </div>
+            </div>
+        </nav>
+        <!-- Navigation Section Ends -->
+
+    </section>
+    <!--   Header Ends  -->    
+    
+    <!--   My Rejected Notes  -->
+    <div id="generic-container">
+       
+        <div id="component-box">
+           
+            <div class="container">
+
+                <div id="download-dashboard">
+
+                    <div class="progress-notes-section">
+
+                        <div class="progress-notes-wrapper">
+
+                            <div class="notes-top-wrap">
+                                <div class="row general-dashboard-head general-top-bar">
+                                    <div class="horizontal-heading col-md-6 col-sm-12 col-xs-12 text-left">
+                                        <h3>My Rejected Notes</h3>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                        <div class="progress-note-btn">
+                                            <input type="text" class="search-enter-progress" placeholder="Search" title="Type
+                                        in a name" />
+                                            <a href=""><button>Search</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="progress-table general-big-table" style="overflow-x: auto;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">sr no.</th>
+                                            <th scope="col">note TITLE</th>
+                                            <th scope="col">CATEGORY</th>
+                                            <th scope="col">remarks</th>
+                                            <th scope="col">Clone</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td class="title-col"><a href="note_details.html">Data Science</a></td>
+                                            <td>Science</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur </td>
+                                            <td><a href="#" class="title-col">Clone</a></td>
+                                            <td>
+                                                <div class="dropdown sold-notes-menu">
+                                                    <a class="dropbtn"><img src="images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                    <div class="dropdown-content">
+                                                        <a href="#">Download Note</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td class="title-col"><a href="note_details.html">Account</a></td>
+                                            <td>Commerce</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur </td>
+                                            <td><a href="#" class="title-col">Clone</a></td>
+                                            <td>
+                                                <div class="dropdown sold-notes-menu">
+                                                    <a class="dropbtn"><img src="images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                    <div class="dropdown-content">
+                                                        <a href="#">Download Note</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td class="title-col"><a href="note_details.html">Social Studies</a></td>
+                                            <td>Science</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur </td>
+                                            <td><a href="#" class="title-col">Clone</a></td>
+                                            <td>
+                                                <div class="dropdown sold-notes-menu">
+                                                    <a class="dropbtn"><img src="images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                    <div class="dropdown-content">
+                                                        <a href="#">Download Note</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td class="title-col"><a href="note_details.html">AI</a></td>
+                                            <td>IT</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur </td>
+                                            <td><a href="#" class="title-col">Clone</a></td>
+                                            <td>
+                                                <div class="dropdown sold-notes-menu">
+                                                    <a class="dropbtn"><img src="images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                    <div class="dropdown-content">
+                                                        <a href="#">Download Note</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td class="title-col"><a href="note_details.html">Lorem ipsum</a></td>
+                                            <td>Lorem</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur </td>
+                                            <td><a href="#" class="title-col">Clone</a></td>
+                                            <td>
+                                                <div class="dropdown sold-notes-menu">
+                                                    <a class="dropbtn"><img src="images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                    <div class="dropdown-content">
+                                                        <a href="#">Download Note</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td class="title-col"><a href="note_details.html">Data Science</a></td>
+                                            <td>Science</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur </td>
+                                            <td><a href="#" class="title-col">Clone</a></td>
+                                            <td>
+                                                <div class="dropdown sold-notes-menu">
+                                                    <a class="dropbtn"><img src="images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                    <div class="dropdown-content">
+                                                        <a href="#">Download Note</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td class="title-col"><a href="note_details.html">Account</a></td>
+                                            <td>Commerce</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur </td>
+                                            <td><a href="#" class="title-col">Clone</a></td>
+                                            <td>
+                                                <div class="dropdown sold-notes-menu">
+                                                    <a class="dropbtn"><img src="images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                    <div class="dropdown-content">
+                                                        <a href="#">Download Note</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td class="title-col"><a href="note_details.html">Social Studies</a></td>
+                                            <td>Science</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur </td>
+                                            <td><a href="#" class="title-col">Clone</a></td>
+                                            <td>
+                                                <div class="dropdown sold-notes-menu">
+                                                    <a class="dropbtn"><img src="images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                    <div class="dropdown-content">
+                                                        <a href="#">Download Note</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>9</td>
+                                            <td class="title-col"><a href="note_details.html">AI</a></td>
+                                            <td>IT</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur </td>
+                                            <td><a href="#" class="title-col">Clone</a></td>
+                                            <td>
+                                                <div class="dropdown sold-notes-menu">
+                                                    <a class="dropbtn"><img src="images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                    <div class="dropdown-content">
+                                                        <a href="#">Download Note</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td class="title-col"><a href="note_details.html">Lorem ipsum</a></td>
+                                            <td>Lorem</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur </td>
+                                            <td><a href="#" class="title-col">Clone</a></td>
+                                            <td>
+                                                <div class="dropdown sold-notes-menu">
+                                                    <a class="dropbtn"><img src="images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                    <div class="dropdown-content">
+                                                        <a href="#">Download Note</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination-section">
+                            <div class="pagination-notes">
+                                <div class="pagination-number">
+                                    <a href="#"><i class="fa fa-angle-left"></i></a>
+                                    <a href="#" class="active">1</a>
+                                    <a href="#">2</a>
+                                    <a href="#">3</a>
+                                    <a href="#">4</a>
+                                    <a href="#">5</a>
+                                    <a href="#"><i class="fa fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        
+    </div>
+
+    <!-- Footer -->
+    <footer>
+            <div class="container">
+                <div class="row">
+                    <div id="text-area" class="col-md-8 col-sm-8">
+                        <p>Copyright <i class="fa fa-copyright"></i> TatvaSoft All rights reserved.</p>
+                    </div>
+                    <div id="icon-area" class="col-md-4 col-sm-4">
+                           
+                            <!--  Social Icons  -->
+                            <ul class="social-list">
+                                <li>
+                                    <a href="https://www.facebook.com/TatvaSoft">
+                                    <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                   <a href="https://twitter.com/tatvasoft">
+                                   <i class="fa fa-twitter"></i>
+                                   </a>
+                                </li>
+                                <li>
+                                    <a href="https://in.linkedin.com/company/tatvasoft">
+                                    <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+    </footer>    
+    <!-- Footer End -->
+
+    <!-- Jquery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

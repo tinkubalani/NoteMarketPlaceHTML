@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no">
+    
+    <!-- Title -->
+    <title>Notes Marketplace</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon/favicon.ico">    
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">   
+    
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="css/font-awesome/font-awesome.min.css">
+   
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+   
+    <!-- Header Section -->
+    <section id="general-header">
+
+        <!-- Navigation Panel-->
+        <nav class="navbar fixed-top navbar-expand-lg">
+
+            <div class="container">
+
+                <!-- Navbar Top Logo -->
+                <a class="navbar-brand" href="home.html">
+                    <img src="images/homepage/logo.png" alt="top-logo">
+                </a>
+
+                <!-- Mobile Menu Button-->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-menu-navbar" aria-controls="mobile-menu-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span id=mobile-menu-button>   
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mobile-menu-navbar">
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="search_page.html">Search Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard_1.html">Sell Your Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="buyer_request.html">Buyer Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="FAQ_page.html">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact_us_page.html">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+
+                           <!-- Dropdown Menu Under User Icon-->
+                            <div class="dropdown-menu-profiles">
+                                <a class="user-icon-profile nav-link" href="#"><img src="images/User-Profile/user-img.png" alt="customer-image"></a>
+                                <div class="dropdown-box">
+                                    <a href="user_profile.html">My Profile</a>
+                                    <a href="my_downloads.html">My Download</a>
+                                    <a href="my_sold_notes.html">My Sold Notes</a>
+                                    <a href="my_rejected_notes.html">My Rejected Notes</a>
+                                    <a href="change_password.html">Change Password</a>
+                                    <a href="#">logout</a>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                      
+                       <!-- Logout Button-->
+                        <div class="log-in-out-btn">
+                            <a href="login.html"><button>Logout</button></a>
+                        </div>
+
+                </div>
+            </div>
+        </nav>
+        <!-- Navigation Section Ends -->
+
+    </section>
+    <!-- Header Section Ends -->    
+
+    <div id="generic-containe">
+       
+        <div id="component-box">
+           
+            <!-- Background image with some text -->
+            <div class="general-bg-img">
+                <h3 class="text-center">Add Notes</h3>
+            </div>
+
+            <div id="add-notes-part">
+
+                <!-- Form section -->
+                <div id="user-profile-form" class="profile-wrapper">
+
+                    <form>
+
+                        <div class="container">
+
+                            <!-- Basic Notes Detail -->
+                            <div id="basic-profile-details" class="info-components">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <h3>Basic Note Details</h3>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md- col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label>Title * </label>
+                                            <input type="text" class="form-control" placeholder="Enter your notes title" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label>Category * </label>
+                                            <select class="form-control arrow-down-icon" required>
+                                                <option>Select your category</option>
+                                                <option>Science</option>
+                                                <option>IT</option>
+                                                <option>AI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group profile-picture-input">
+                                            <label>Display Picture</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="customFile1" name="filename">
+                                                <label class="custom-file-label" for="customFile1">
+                                                    <div>
+                                                        <div class="upload-2"><img src="images/User-Profile/upload.png" alt=""></div>
+                                                        <div>upload
+                                                            a image</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group profile-picture-input">
+                                            <label>Upload Notes *</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="customFile" name="filename" required>
+                                                <label class="custom-file-label" for="customFile">
+                                                    <div>
+                                                        <div class="upload-2"><img src="images/User-Profile/upload.png" alt=""></div>
+                                                        <div>upload
+                                                            a image</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Type</label>
+                                            <select class="form-control arrow-down-icon">
+                                                <option>Select your note type</option>
+                                                <option>Paid</option>
+                                                <option>Free</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Number of Pages</label>
+                                            <input type="text" class="form-control" placeholder="Enter your number of note pages">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group profile-picture-input last-row">
+                                            <label>Description *</label>
+                                            <textarea class="form-control" placeholder="Description..." rows="10" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Institution information -->
+                            <div id="institution-detail" class="info-components">
+
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <h3>Institution Information</h3>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group last-row">
+                                            <label>Country</label>
+                                            <select class="form-control arrow-down-icon">
+                                                <option>Select your country</option>
+                                                <option>India</option>
+                                                <option>Us</option>
+                                                <option>Zapan</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group last-row margin-top">
+                                            <label>Institution Name</label>
+                                            <input type="text" class="form-control" placeholder="Enter your zipcode">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Course Detail -->
+                            <div id="course-detail" class="info-components">
+
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <h3>Course Details</h3>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label>Course Name</label>
+                                            <input type="text" class="form-control" placeholder="Enter your course name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label>Course Code</label>
+                                            <input type="text" class="form-control" placeholder="Enter your course code">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group last-row last-row-small">
+                                            <label>Professor / Lecturer</label>
+                                            <input type="text" class="form-control" placeholder="Enter your professor name">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- University and college information -->
+                            <div id="university_and_college_information" class="info-components">
+
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <h3>Selling Information</h3>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label>Sell for *</label>
+                                            <div class="input-group radio-input">
+                                                <input type="radio" name="sell-for" required>
+                                                <label>
+                                                    Free
+                                                </label>
+                                                <input type="radio" name="sell-for" required>
+                                                <label>
+                                                    Paid
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group price">
+                                            <label>Sell Price *</label>
+                                            <input type="text" class="form-control" placeholder="Enter your price" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group profile-picture-input">
+                                            <label>Note Preview</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="customFile2" name="filename">
+                                                <label class="custom-file-label" for="customFile2">
+                                                    <div>
+                                                        <div class="upload-2"><img src="images/User-Profile/upload.png" alt=""></div>
+                                                        <div>upload
+                                                            a image</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <button class="btn-general btn-submit-form mr-3">save</button>
+                                        <button class="btn-general btn-submit-form">publish</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+            <div class="container">
+                <div class="row">
+                    <div id="text-area" class="col-md-8 col-sm-8">
+                        <p>Copyright <i class="fa fa-copyright"></i> TatvaSoft All rights reserved.</p>
+                    </div>
+                    <div id="icon-area" class="col-md-4 col-sm-4">
+                           
+                            <!--  Social Icons  -->
+                            <ul class="social-list">
+                                <li>
+                                    <a href="https://www.facebook.com/TatvaSoft">
+                                    <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                   <a href="https://twitter.com/tatvasoft">
+                                   <i class="fa fa-twitter"></i>
+                                   </a>
+                                </li>
+                                <li>
+                                    <a href="https://in.linkedin.com/company/tatvasoft">
+                                    <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+    </footer>    
+    <!-- Footer End -->
+
+    <!-- Jquery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no">
+    
+    <!-- Title -->
+    <title>Notes Marketplace</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon/favicon.ico">    
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">   
+    
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="css/font-awesome/font-awesome.min.css">
+   
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+    
+    
+    <!-- Header Section -->
+    <section id="general-header">
+
+        <!-- Navigation Panel-->
+        <nav class="navbar fixed-top navbar-expand-lg">
+
+            <div class="container">
+
+                <!-- Navbar Top Logo -->
+                <a class="navbar-brand" href="home.html">
+                    <img src="images/homepage/logo.png" alt="top-logo">
+                </a>
+
+                <!-- Mobile Menu Button-->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-menu-navbar" aria-controls="mobile-menu-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span id=mobile-menu-button>   
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mobile-menu-navbar">
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="search_page.html">Search Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard_1.html">Sell Your Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="buyer_request.html">Buyer Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="FAQ_page.html">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact_us_page.html">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+
+                           <!-- Dropdown Menu Under User Icon-->
+                            <div class="dropdown-menu-profiles">
+                                <a class="user-icon-profile nav-link" href="#"><img src="images/User-Profile/user-img.png" alt="customer-image"></a>
+                                <div class="dropdown-box">
+                                    <a href="user_profile.html">My Profile</a>
+                                    <a href="my_downloads.html">My Download</a>
+                                    <a href="my_sold_notes.html">My Sold Notes</a>
+                                    <a href="my_rejected_notes.html">My Rejected Notes</a>
+                                    <a href="change_password.html">Change Password</a>
+                                    <a href="#">logout</a>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                      
+                       <!-- Logout Button-->
+                        <div class="log-in-out-btn">
+                            <a href="login.html"><button>Logout</button></a>
+                        </div>
+
+                </div>
+            </div>
+        </nav>
+        <!-- Navigation Section Ends -->
+
+    </section>    
+
+    <div id="generic-container">
+       
+        <div id="component-box">
+
+            <div id="search-page">
+
+                <!-- Background image with some text -->
+                    <div class="general-bg-img">
+                        <h3 class="text-center">Search Notes</h3>
+                    </div>
+
+                <div class="filter-section">
+                   
+                    <div class="container">
+                       
+                        <div id="notes-filter-wrapper">
+                           
+                            <div class="horizontal-heading-sm">
+                                <h3>Search and Filter Notes</h3>
+                            </div>
+                            <div class="search-notes">
+                                <div class="search-filter">
+                                    <div class="search">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="text" id="search-enter" placeholder="Search notes here..." title="Type in a name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filter">
+                                        <div class="container">
+                                           <div class="row">
+                                               <div class="col-md-2 select-dropdown">
+                                                   <select class="arrow-down-icon">
+                                                    <option>Select Type</option>
+                                                    <option>Type 1</option>
+                                                    <option>Type 2</option>
+                                                    <option>Type 3</option>
+                                                    <option>Type 4</option>
+                                                </select>
+                                               </div>
+                                               <div class="col-md-2 select-dropdown">
+                                                   <select class="arrow-down-icon">
+                                                    <option>Select category</option>
+                                                    <option>Type 1</option>
+                                                    <option>Type 2</option>
+                                                    <option>Type 3</option>
+                                                    <option>Type 4</option>
+                                                </select>
+                                               </div>
+                                               <div class="col-md-2 select-dropdown">
+                                                   <select class="arrow-down-icon">
+                                                    <option>Select university</option>
+                                                    <option>Type 1</option>
+                                                    <option>Type 2</option>
+                                                    <option>Type 3</option>
+                                                    <option>Type 4</option>
+                                                </select>
+                                               </div>
+                                               <div class="col-md-2 select-dropdown">
+                                                   <select class="arrow-down-icon">
+                                                    <option>Select course</option>
+                                                    <option>Type 1</option>
+                                                    <option>Type 2</option>
+                                                    <option>Type 3</option>
+                                                    <option>Type 4</option>
+                                                </select>
+                                               </div>
+                                               <div class="col-md-2 select-dropdown">
+                                                   <select class="arrow-down-icon">
+                                                    <option>Select country</option>
+                                                    <option>Type 1</option>
+                                                    <option>Type 2</option>
+                                                    <option>Type 3</option>
+                                                    <option>Type 4</option>
+                                                </select>
+                                               </div>
+                                               <div class="col-md-2 select-dropdown">
+                                                   <select class="arrow-down-icon">
+                                                    <option>Select rating</option>
+                                                    <option>Type 1</option>
+                                                    <option>Type 2</option>
+                                                    <option>Type 3</option>
+                                                    <option>Type 4</option>
+                                                </select>
+                                               </div>
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="search-results">
+                            <div class="horizontal-heading-sm">
+                                <h3>Total 18 Notes</h3>
+                            </div>
+
+                            <div id="search-results-content">
+
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6">
+
+                                        <!-- note 01 -->
+                                        <div class="note-wrap">
+                                            <div class="note-img">
+                                                <img src="images/Search-Notes/1.jpg" alt="note-image">
+                                            </div>
+
+                                            <div class="note-title">
+                                                <a href="note_details.html">
+                                                    <h3>Computer Operating System - Final Exam Book With Paper Solution</h3>
+                                                </a>
+                                            </div>
+
+                                            <div class="note-details">
+                                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                                <p><i class="fa fa-university"></i>204 Pages</p>
+                                                <p><i class="fa fa-university"></i>thu, Nov 26 2020</p>
+                                                <p><i class="fa fa-flag"></i><span>5 Usera marked this note as inappropriate</span></p>
+                                            </div>
+
+                                            <div>
+                                                <div class="ratings-wrapper">
+                                                    <input type="radio" id="1-star5" name="1-rate" value="5" />
+                                                    <label for="1-star5" title="text">5
+                                                        stars</label>
+                                                    <input type="radio" id="1-star4" name="1-rate" value="4" />
+                                                    <label for="1-star4" title="text">4
+                                                        stars</label>
+                                                    <input type="radio" id="1-star3" name="1-rate" value="3" />
+                                                    <label for="1-star3" title="text">3
+                                                        stars</label>
+                                                    <input type="radio" id="1-star2" name="1-rate" value="2" />
+                                                    <label for="1-star2" title="text">2
+                                                        stars</label>
+                                                    <input type="radio" id="1-star1" name="1-rate" value="1" />
+                                                    <label for="1-star1" title="text">1
+                                                        star</label>
+                                                </div>
+                                                <p>100 Review</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+
+                                        <!-- note 02 -->
+                                        <div class="note-wrap margin-top-two">
+                                            <div class="note-img">
+                                                <img src="images/Search-Notes/2.jpg" alt="note-image">
+                                            </div>
+
+                                            <div class="note-title">
+                                                <a href="note_details.html">
+                                                    <h3>Computer Science</h3>
+                                                </a>
+                                            </div>
+
+                                            <div class="note-details">
+                                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                                <p><i class="fa fa-university"></i>204 Pages</p>
+                                                <p><i class="fa fa-university"></i>thu, Nov 26 2020</p>
+                                                <p><i class="fa fa-flag"></i><span>5 Usera marked this note as inappropriate</span></p>
+                                            </div>
+
+                                            <div>
+                                                <div class="ratings-wrapper">
+                                                    <input type="radio" id="2-star5" name="2-rate" value="5" />
+                                                    <label for="2-star5" title="text">5
+                                                        stars</label>
+                                                    <input type="radio" id="2-star4" name="2-rate" value="4" />
+                                                    <label for="2-star4" title="text">4
+                                                        stars</label>
+                                                    <input type="radio" id="2-star3" name="2-rate" value="3" />
+                                                    <label for="2-star3" title="text">3
+                                                        stars</label>
+                                                    <input type="radio" id="2-star2" name="2-rate" value="2" />
+                                                    <label for="2-star2" title="text">2
+                                                        stars</label>
+                                                    <input type="radio" id="2-star1" name="2-rate" value="1" />
+                                                    <label for="2-star1" title="text">1
+                                                        star</label>
+                                                </div>
+                                                <p>100 Review</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+
+                                        <!-- note 03 -->
+                                        <div class="note-wrap margin-top">
+                                            <div class="note-img">
+                                                <img src="images/Search-Notes/3.jpg" alt="note-image">
+                                            </div>
+
+                                            <div class="note-title">
+                                                <a href="note_details.html">
+                                                    <h3>Basic Computer Engineering Tech India Publication Series</h3>
+                                                </a>
+                                            </div>
+
+                                            <div class="note-details">
+                                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                                <p><i class="fa fa-university"></i>204 Pages</p>
+                                                <p><i class="fa fa-university"></i>thu, Nov 26 2020</p>
+                                                <p><i class="fa fa-flag"></i><span>5 Usera marked this note as inappropriate</span></p>
+                                            </div>
+                                            <div>
+                                                <div class="ratings-wrapper">
+                                                    <input type="radio" id="3-star5" name="3-rate" value="5" />
+                                                    <label for="3-star5" title="text">5
+                                                        stars</label>
+                                                    <input type="radio" id="3-star4" name="3-rate" value="4" />
+                                                    <label for="3-star4" title="text">4
+                                                        stars</label>
+                                                    <input type="radio" id="3-star3" name="3-rate" value="3" />
+                                                    <label for="3-star3" title="text">3
+                                                        stars</label>
+                                                    <input type="radio" id="3-star2" name="3-rate" value="2" />
+                                                    <label for="3-star2" title="text">2
+                                                        stars</label>
+                                                    <input type="radio" id="3-star1" name="3-rate" value="1" />
+                                                    <label for="3-star1" title="text">1
+                                                        star</label>
+                                                </div>
+                                                <p class="review">100 Review</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6">
+
+                                        <!-- note 04 -->
+                                        <div class="note-wrap">
+                                            <div class="note-img">
+                                                <img src="images/Search-Notes/4.jpg" alt="note-image">
+                                            </div>
+
+                                            <div class="note-title">
+                                                <a href="note_details.html">
+                                                    <h3>Computer Science illuminated - Serventh Edition</h3>
+                                                </a>
+                                            </div>
+
+                                            <div class="note-details">
+                                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                                <p><i class="fa fa-university"></i>204 Pages</p>
+                                                <p><i class="fa fa-university"></i>thu, Nov 26 2020</p>
+                                                <p><i class="fa fa-flag"></i><span>5 Usera marked this note as inappropriate</span></p>
+                                            </div>
+
+                                            <div>
+                                                <div class="ratings-wrapper">
+                                                    <input type="radio" id="4-star5" name="4-rate" value="5" />
+                                                    <label for="4-star5" title="text">5
+                                                        stars</label>
+                                                    <input type="radio" id="4-star4" name="4-rate" value="4" />
+                                                    <label for="4-star4" title="text">4
+                                                        stars</label>
+                                                    <input type="radio" id="4-star3" name="4-rate" value="3" />
+                                                    <label for="4-star3" title="text">3
+                                                        stars</label>
+                                                    <input type="radio" id="4-star2" name="4-rate" value="2" />
+                                                    <label for="4-star2" title="text">2
+                                                        stars</label>
+                                                    <input type="radio" id="4-star1" name="4-rate" value="1" />
+                                                    <label for="4-star1" title="text">1
+                                                        star</label>
+                                                </div>
+                                                <p>100 Review</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+
+                                        <!-- note 05 -->
+                                        <div class="note-wrap move-top-one margin-top-two">
+                                            <div class="note-img">
+                                                <img src="images/Search-Notes/5.jpg" alt="note-image">
+                                            </div>
+
+                                            <div class="note-title">
+                                                <a href="note_details.html">
+                                                    <h3>The Principles of Computer Hardware - Oxford</h3>
+                                                </a>
+                                            </div>
+
+                                            <div class="note-details">
+                                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                                <p><i class="fa fa-university"></i>204 Pages</p>
+                                                <p><i class="fa fa-university"></i>thu, Nov 26 2020</p>
+                                                <p><i class="fa fa-flag"></i><span>5 Usera marked this note as inappropriate</span></p>
+                                            </div>
+
+                                            <div>
+                                                <div class="ratings-wrapper">
+                                                    <input type="radio" id="5-star5" name="5-rate" value="5" />
+                                                    <label for="5-star5" title="text">5
+                                                        stars</label>
+                                                    <input type="radio" id="5-star4" name="5-rate" value="4" />
+                                                    <label for="5-star4" title="text">4
+                                                        stars</label>
+                                                    <input type="radio" id="5-star3" name="5-rate" value="3" />
+                                                    <label for="5-star3" title="text">3
+                                                        stars</label>
+                                                    <input type="radio" id="5-star2" name="5-rate" value="2" />
+                                                    <label for="5-star2" title="text">2
+                                                        stars</label>
+                                                    <input type="radio" id="5-star1" name="5-rate" value="1" />
+                                                    <label for="5-star1" title="text">1
+                                                        star</label>
+                                                </div>
+                                                <p>100 Review</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+
+                                        <!-- note 06 -->
+                                        <div class="note-wrap margin-top">
+                                            <div class="note-img">
+                                                <img src="images/Search-Notes/6.jpg" alt="note-image">
+                                            </div>
+
+                                            <div class="note-title">
+                                                <a href="note_details.html">
+                                                    <h3>The Computer Book</h3>
+                                                </a>
+                                            </div>
+
+                                            <div class="note-details">
+                                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                                <p><i class="fa fa-university"></i>204 Pages</p>
+                                                <p><i class="fa fa-university"></i>thu, Nov 26 2020</p>
+                                                <p><i class="fa fa-flag"></i><span>5 Usera marked this note as inappropriate</span></p>
+                                            </div>
+                                            <div>
+                                                <div class="ratings-wrapper">
+                                                    <input type="radio" id="6-star5" name="6-rate" value="5" />
+                                                    <label for="6-star5" title="text">5
+                                                        stars</label>
+                                                    <input type="radio" id="6-star4" name="6-rate" value="4" />
+                                                    <label for="6-star4" title="text">4
+                                                        stars</label>
+                                                    <input type="radio" id="6-star3" name="6-rate" value="3" />
+                                                    <label for="6-star3" title="text">3
+                                                        stars</label>
+                                                    <input type="radio" id="6-star2" name="6-rate" value="2" />
+                                                    <label for="6-star2" title="text">2
+                                                        stars</label>
+                                                    <input type="radio" id="6-star1" name="6-rate" value="1" />
+                                                    <label for="6-star1" title="text">1
+                                                        star</label>
+                                                </div>
+                                                <p class="review">100 Review</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6">
+
+                                        <!-- note 07 -->
+                                        <div class="note-wrap">
+                                            <div class="note-img">
+                                                <img src="images/Search-Notes/1.jpg" alt="note-image">
+                                            </div>
+
+                                            <div class="note-title">
+                                                <a href="note_details.html">
+                                                    <h3>Computer Operating System - Final Exam Book With Paper Solution</h3>
+                                                </a>
+                                            </div>
+
+                                            <div class="note-details">
+                                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                                <p><i class="fa fa-university"></i>204 Pages</p>
+                                                <p><i class="fa fa-university"></i>thu, Nov 26 2020</p>
+                                                <p><i class="fa fa-flag"></i><span>5 Usera marked this note as inappropriate</span></p>
+                                            </div>
+
+                                            <div>
+                                                <div class="ratings-wrapper">
+                                                    <input type="radio" id="7-star5" name="7-rate" value="5" />
+                                                    <label for="7-star5" title="text">5
+                                                        stars</label>
+                                                    <input type="radio" id="7-star4" name="7-rate" value="4" />
+                                                    <label for="7-star4" title="text">4
+                                                        stars</label>
+                                                    <input type="radio" id="7-star3" name="7-rate" value="3" />
+                                                    <label for="7-star3" title="text">3
+                                                        stars</label>
+                                                    <input type="radio" id="7-star2" name="7-rate" value="2" />
+                                                    <label for="7-star2" title="text">2
+                                                        stars</label>
+                                                    <input type="radio" id="7-star1" name="7-rate" value="1" />
+                                                    <label for="7-star1" title="text">1
+                                                        star</label>
+                                                </div>
+                                                <p>100 Review</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+
+                                        <!-- note 08 -->
+                                        <div class="note-wrap move-top-two margin-top-two">
+                                            <div class="note-img">
+                                                <img src="images/Search-Notes/2.jpg" alt="note-image">
+                                            </div>
+
+                                            <div class="note-title">
+                                                <a href="note_details.html">
+                                                    <h3>Computer Operating System - Final Exam Book With Paper Solution</h3>
+                                                </a>
+                                            </div>
+
+                                            <div class="note-details">
+                                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                                <p><i class="fa fa-university"></i>204 Pages</p>
+                                                <p><i class="fa fa-university"></i>thu, Nov 26 2020</p>
+                                                <p><i class="fa fa-flag"></i><span>5 Usera marked this note as inappropriate</span></p>
+                                            </div>
+
+                                            <div>
+                                                <div class="ratings-wrapper">
+                                                    <input type="radio" id="8-star5" name="8-rate" value="5" />
+                                                    <label for="8-star5" title="text">5
+                                                        stars</label>
+                                                    <input type="radio" id="8-star4" name="8-rate" value="4" />
+                                                    <label for="8-star4" title="text">4
+                                                        stars</label>
+                                                    <input type="radio" id="8-star3" name="8-rate" value="3" />
+                                                    <label for="8-star3" title="text">3
+                                                        stars</label>
+                                                    <input type="radio" id="8-star2" name="8-rate" value="2" />
+                                                    <label for="8-star2" title="text">2
+                                                        stars</label>
+                                                    <input type="radio" id="8-star1" name="8-rate" value="1" />
+                                                    <label for="8-star1" title="text">1
+                                                        star</label>
+                                                </div>
+                                                <p>100 Review</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+
+                                        <!-- note 03 -->
+                                        <div class="note-wrap move-top-three margin-top-two">
+                                            <div class="note-img">
+                                                <img src="images/Search-Notes/3.jpg" alt="note-image">
+                                            </div>
+
+                                            <div class="note-title">
+                                                <a href="#">
+                                                    <h3>Computer Operating System - Final Exam Book With Paper Solution</h3>
+                                                </a>
+                                            </div>
+
+                                            <div class="note-details">
+                                                <p><i class="fa fa-university"></i>University of California, US</p>
+                                                <p><i class="fa fa-university"></i>204 Pages</p>
+                                                <p><i class="fa fa-university"></i>thu, Nov 26 2020</p>
+                                                <p><i class="fa fa-flag"></i><span>5 Usera marked this note as inappropriate</span></p>
+                                            </div>
+                                            <div>
+                                                <div class="ratings-wrapper">
+                                                    <input type="radio" id="star5" name="rate" value="5" />
+                                                    <label for="star5" title="text">5
+                                                        stars</label>
+                                                    <input type="radio" id="star4" name="rate" value="4" />
+                                                    <label for="star4" title="text">4
+                                                        stars</label>
+                                                    <input type="radio" id="star3" name="rate" value="3" />
+                                                    <label for="star3" title="text">3
+                                                        stars</label>
+                                                    <input type="radio" id="star2" name="rate" value="2" />
+                                                    <label for="star2" title="text">2
+                                                        stars</label>
+                                                    <input type="radio" id="star1" name="rate" value="1" />
+                                                    <label for="star1" title="text">1
+                                                        star</label>
+                                                </div>
+                                                <p class="review">100 Review</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination-section">
+                            <div class="pagination-notes">
+                                <div class="pagination-number">
+                                    <a href="#"><i class="fa fa-angle-left"></i></a>
+                                    <a href="#" class="active">1</a>
+                                    <a href="#">2</a>
+                                    <a href="#">3</a>
+                                    <a href="#">4</a>
+                                    <a href="#">5</a>
+                                    <a href="#"><i class="fa fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+            <div class="container">
+                <div class="row">
+                    <div id="text-area" class="col-md-8 col-sm-8">
+                        <p>Copyright <i class="fa fa-copyright"></i> TatvaSoft All rights reserved.</p>
+                    </div>
+                    <div id="icon-area" class="col-md-4 col-sm-4">
+                           
+                            <!--  Social Icons  -->
+                            <ul class="social-list">
+                                <li>
+                                    <a href="https://www.facebook.com/TatvaSoft">
+                                    <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                   <a href="https://twitter.com/tatvasoft">
+                                   <i class="fa fa-twitter"></i>
+                                   </a>
+                                </li>
+                                <li>
+                                    <a href="https://in.linkedin.com/company/tatvasoft">
+                                    <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+    </footer>    
+    <!-- Footer End -->    
+
+
+    <!-- Jquery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
