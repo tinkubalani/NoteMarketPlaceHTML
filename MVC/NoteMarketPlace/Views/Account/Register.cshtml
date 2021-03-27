@@ -1,0 +1,138 @@
+﻿@model NoteMarketPlace.Models.UserRegistration
+@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no">
+
+    <!-- Title -->
+    <title>Notes Marketplace</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Content/Front/images/favicon/favicon.ico">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="~/Content/Front/css/font-awesome/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/Front/css/bootstrap/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/Content/Front/css/style.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/Front/css/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+
+    <section class="sign-up-page">
+
+        <div class="login-general-box">
+
+            <div class="login-wrapper">
+
+                <div id="top-logo" class="text-center">
+                    <img src="images/login/top-logo.png" class="img-responsive" alt="top-logo">
+                </div>
+
+                <div id="login-form-container" class="generic-form">
+
+                    <form>
+
+                        <h3 class="text-center">Create an Account</h3>
+                        <p class="text-center">Enter your details to signup</p>
+                        <p id="succesfull-signup-msg" class="text-center"><i class="fa fa-check-circle mr-2"></i>Your account has been successfully created. </p>
+
+                        <!-- First Name -->
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">First Name *</label>
+                            <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter your first name" required>
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Last Name *</label>
+                            <input type="text" class="form-control" id="exampleInputLastName" placeholder="Enter your last name" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email *</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter your email" required>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group">
+
+                            <label for="exampleInputPassword1">Password</label>
+
+                            <div class="password-container">
+                                <input type="password" class="form-control" id="new-password" placeholder="Enter your password">
+                                <div class="login-eye">
+                                    <i class="fa fa-eye-slash toggle-password" toggle="#new-password"></i>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="form-group">
+
+                            <label for="exampleInputPassword1">Confirm Password</label>
+
+                            <div class="password-container">
+                                <input type="password" class="form-control" id="confirm-password" placeholder="Enter your confirm password">
+                                <div class="login-eye">
+                                    <i class="fa fa-eye-slash toggle-password" toggle="#confirm-password"></i>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <a class="btn btn-general" id="sign-up-btn" href="#" title="Sign Up" role="button"><span>Sign Up</span></a>
+
+                    </form>
+
+                    <!-- Login Link -->
+                    <p class="text-center">Already have an account? <a href="login.html">Login</a></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Jquery -->
+    <script src="~/Scripts/js/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/Scripts/js/script.js"></script>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+</body>
+
+</html>

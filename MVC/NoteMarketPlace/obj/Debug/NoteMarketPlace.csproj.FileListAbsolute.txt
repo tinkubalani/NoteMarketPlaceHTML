@@ -1,0 +1,4 @@
+C:\Users\Admin\source\repos\NoteMarketPlace\NoteMarketPlace\obj\Debug\NoteMarketPlace.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\NoteMarketPlace\NoteMarketPlace\obj\Debug\NoteMarketPlace.csproj.CoreCompileInputs.cache
+D:\College Work\LAB WORK\MY MY\NoteMarketPlaceHTML-master\MVC\NoteMarketPlace\obj\Debug\NoteMarketPlace.csprojAssemblyReference.cache
+D:\College Work\LAB WORK\MY MY\NoteMarketPlaceHTML-master\MVC\NoteMarketPlace\obj\Debug\NoteMarketPlace.csproj.CoreCompileInputs.cache
