@@ -1,0 +1,247 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    IPagedList<NotesMarketplace.Models.AllPublishedNoteViewModel> Published = ViewBag.PublishedNotes;
+}
+
+<div id="generic-container">
+
+    <div id="component-box">
+        <div class="container">
+            <div class="admin-dashboard">
+                <div class="User-Dashboard">
+                    <div class="row dashboard-1">
+                        @if (@TempData["ProfileNotFound"] != null)
+                        {
+                            <div class="col-md-12">
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>@TempData["ProfileNotFound"]!</strong> has not created his/her profile yet.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                        <div class="col-md-12">
+                            @if (TempData["success"] != null)
+                            {
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>@TempData["success"] !</strong> @TempData["message"]
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6
+                                    text-left">
+                            <h3>Dashboard</h3>
+                        </div>
+
+                    </div>
+                    <div class="dashboard-detail-2">
+                        <div class="flex-container-admin">
+
+                            <div style="flex-grow: 3" id="dash-admin-1">
+                                <div>
+                                    <a href="/Admin/NotesUnderReview">
+                                        <h6>@ViewBag.TotalInReviewNotes</h6>
+                                    </a>
+                                    <span>Number of Notes in Review for<br> Publish</span>
+                                </div>
+                            </div>
+                            <div style="flex-grow: 3">
+                                <div>
+                                    <a href="/Admin/DownloadedNotes">
+                                        <h6>@ViewBag.LastDownloads</h6>
+                                    </a>
+                                    <span>Number of New Notes Downloaded <br>(Last 7 days)</span>
+                                </div>
+                            </div>
+                            <div style="flex-grow: 3" id="dash-admin-3">
+                                <div>
+                                    <a href="/AdminMember/MemberList">
+                                        <h6>@ViewBag.Newregistration</h6>
+                                    </a>
+                                    <span>Number of New Registrations <br>(Last 7 days)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-3">
+                    <div class="progress-notes-2">
+                        <div class="row progress-dashboard">
+                            <div class="col-md-3 admin-label">
+                                <h3>Published Notes</h3>
+                            </div>
+                            <div class="col-md-9 search-label">
+                                <div class="progress-note-btn">
+                                    @using (Html.BeginForm("Index", "Admin", FormMethod.Get, new { id = "AllSeachNote" }))
+                                    {
+                                        <div class="row">
+                                            <div class="col-md-9 text-right">
+                                                <div>
+
+                                                    <input type="text" name="searchPublished" id="search-enter-progress" placeholder="Search" title="Type
+                                                            in a name">
+                                                    <a href=""><button type="submit">Search</button></a>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="select-month">
+                                                    <div class="form-group">
+                                                        @Html.DropDownList("SelectMonth", (SelectList)ViewBag.SelectMonth, "--Select Month--", new { id = "SelectMonth", name = "SelectMonth", @class = "form-control arrow-down-icon", onchange = "NoteFunction();" })
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-area">
+
+                        <div class="progress-table general-big-table" style="overflow-x: auto;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">sr no.</th>
+                                        <th scope="col" class="text-center">@Html.ActionLink("title", "Index", new { sortByForPublished = ViewBag.SortTitleParameterPublish, searchPublished = Request.QueryString["searchPublished"] })</th>
+                                        <th scope="col" class="text-center">@Html.ActionLink("category", "Index", new { sortByForPublished = ViewBag.SortCategoryParameterPublish, searchPublished = Request.QueryString["searchPublished"] })</th>
+                                        <th scope="col" class="text-center">@Html.ActionLink("ATTACHMENT SIZE", "Index", new { sortByForPublished = ViewBag.SizeSortParamPublish, searchPublished = Request.QueryString["searchPublished"] })</th>
+                                        <th scope="col" class="text-center">@Html.ActionLink("sell type", "Index", new { sortByForPublished = ViewBag.SortSellTypeParameterPublish, searchPublished = Request.QueryString["searchPublished"] })</th>
+                                        <th scope="col" class="text-center">@Html.ActionLink("price", "Index", new { sortByForPublished = ViewBag.SortPriceParameterPublish, searchPublished = Request.QueryString["searchPublished"] })</th>
+                                        <th scope="col" class="text-center">@Html.ActionLink("PUBLISHER", "Index", new { sortByForPublished = ViewBag.PublisherSortParamPublish, searchPublished = Request.QueryString["searchPublished"] })</th>
+                                        <th scope="col" class="text-center">@Html.ActionLink("Published date", "Index", new { sortByForPublished = ViewBag.SortCreatedDateParameterPublish, searchPublished = Request.QueryString["searchPublished"] })</th>
+                                        <th scope="col" class="text-center">number of<br>downloads</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        var Counter = 0;
+
+                                        if (Published.Count == 0)
+                                        {
+                                            <tr>
+                                                <td colspan="10" class="text-center">No Any Record Found</td>
+                                            </tr>
+                                        }
+
+                                        foreach (var note in Published)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(Counter + ((Published.PageNumber - 1) * Published.PageSize) + 1)</td>
+                                                <td class="title-col text-center"><a href="/Admin/NoteDetail/@note.SellerNotes.ID">@note.SellerNotes.Title</a></td>
+                                                <td class="text-center">@note.NoteCategories.Name</td>
+                                                <td class="text-center">@note.Attachment.AttachementSize Kb</td>
+                                                <td class="text-center">
+                                                    @if (@note.SellerNotes.IsPaid == true)
+                                                    {
+                                                        <p>Paid</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>Free</p>
+                                                    }
+                                                </td>
+                                                <td class="text-center">
+                                                    @if (@note.SellerNotes.IsPaid == true)
+                                                    {
+                                                        <p>$@note.SellerNotes.SellingPrice</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>$0</p>
+                                                    }
+                                                </td>
+                                                <td class="text-center">@note.UserData.FirstName @note.UserData.LastName</td>
+                                                <td class="text-center">@note.SellerNotes.PubilshedDate.Value.ToString("dd-MM-yyyy, HH:mm")</td>
+                                                <td class="text-center title-col"><a href="/Admin/DownloadedNotes?Search=@note.SellerNotes.Title">@note.SellerNotes.Downloads.Where(x => x.NoteID == @note.SellerNotes.ID && x.IsAttachementDownloaded == true && x.IsAttachementDownloaded == true).Select(x => x.ID).Count()</a></td>
+                                                <td>
+                                                    <div class="dropdown admin-notes-menu">
+                                                        <a role="button" class="dropbtn"><img src="/Content/Admin/images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                        <div class="dropdown-content">
+                                                            <a href="/Admin/DownloadAttechedFile/@note.SellerNotes.ID">Download Notes</a>
+                                                            <a href="/Admin/NoteDetail/@note.SellerNotes.ID">View More Details</a>
+                                                            <a role="button" data-toggle="modal" data-target="#NoteID_@note.SellerNotes.ID">Unpublish</a>
+                                                        </div>
+                                                    </div>
+                                                    <div id="reject-pop">
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="NoteID_@note.SellerNotes.ID" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLongTitle">@note.SellerNotes.Title</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    @using (Html.BeginForm("UnPublishNote/" + @note.SellerNotes.ID, "Admin", FormMethod.Post, htmlAttributes: new { }))
+                                                                    {
+                                                                        <div class="modal-body">
+                                                                            <div id="write-comment-form">
+                                                                                <div class="form-group">
+                                                                                    <div class="justify-content-start">
+                                                                                        <h6>
+                                                                                            <br>
+                                                                                            Remarks *
+                                                                                        </h6>
+                                                                                    </div>
+                                                                                    <textarea name="Remarks" class="form-control" rows="3" placeholder="Write Remarks" required></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer justify-content-start">
+                                                                            <div class="add-note-btn action-button ml-auto">
+                                                                                <button type="submit" class="btn-reject">UnPublish</button>
+                                                                                <button data-dismiss="modal" class="btn-inreview close">Cancel</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            { Counter++; }
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination-section">
+                        <div class="pagination-notes">
+                            <div class="pagination-number">
+                                @Html.PagedListPager(Published, PublishedNotespage => Url.Action("Index", new
+                                {
+                                PublishedNotespage,
+                                searchPublished = Request.QueryString["searchPublished"],
+                                sortByForPublished = Request.QueryString["sortByForPublished"],
+                                SortMonth = Request.QueryString["SortMonth"],
+                                }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 5 })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

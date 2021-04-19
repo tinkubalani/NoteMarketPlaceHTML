@@ -1,0 +1,221 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketplace.Models.MyDownloads>
+
+<!--   My Downloads -->
+<div id="generic-container">
+
+    <div id="component-box">
+        <div class="container">
+            <div id="download-dashboard">
+
+                <div class="progress-notes-section">
+
+                    <div class="progress-notes-wrapper">
+
+                        <div class="notes-top-wrap">
+                            <div class="row general-dashboard-head general-top-bar">
+                                <div class="horizontal-heading col-md-6 col-sm-12 col-xs-12 text-left">
+                                    <h3>My Downloads</h3>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="progress-note-btn">
+                                        @using (Html.BeginForm("MyDownloads", "User", FormMethod.Get, new { }))
+                                        {
+                            <input type="text" name="Searchkeyword" class="search-enter-progress" placeholder="Search" title="Type
+                                        in a name" />
+                                            <a href="#"><button>Search</button></a>}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="progress-table general-big-table" style="overflow-x: auto;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">sr no.</th>
+                                        <th scope="col">@Html.ActionLink("note title", "MyDownloads", new { sortBy = ViewBag.SortTitleParameter, Searchkeyword = Request.QueryString["Searchkeyword"] })</th>
+                                        <th scope="col">@Html.ActionLink("Category", "MyDownloads", new { sortBy = ViewBag.SortCategoryParameter, Searchkeyword = Request.QueryString["Searchkeyword"] })</th>
+                                        <th scope="col">seller</th>
+                                        <th scope="col">@Html.ActionLink("sell type", "MyDownloads", new { sortBy = ViewBag.SortSellTypeParameter, Searchkeyword = Request.QueryString["Searchkeyword"] })</th>
+                                        <th scope="col">@Html.ActionLink("Price", "MyDownloads", new { sortBy = ViewBag.SortPriceParameter, Searchkeyword = Request.QueryString["Searchkeyword"] })</th>
+                                        <th scope="col">@Html.ActionLink("Downloaded date/time", "MyDownloads", new { sortBy = ViewBag.SortCreatedDateParameter, Searchkeyword = Request.QueryString["Searchkeyword"] })</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ var Counter = 0;
+
+                                        if (Model.Count == 0)
+                                        {
+                            <tr>
+                                <td colspan="9" class="text-center">No Any Record Found</td>
+                            </tr>
+ }
+
+                        foreach (var item in Model)
+                        {
+            <tr>
+                <td>@(Counter + ((Model.PageNumber - 1) * Model.PageSize) + 1)</td>
+                <td class="title-col"><a href="/Home/NoteDetail/@item.DownloadNotes.NoteID">@item.DownloadNotes.NoteTitle</a></td>
+                <td>@item.DownloadNotes.NoteCategory</td>
+                <td>@item.SellerData.EmailID</td>
+                <td>
+                    @if (item.DownloadNotes.IsPaid == false)
+                    {
+    <text>Free</text> }
+else
+{
+<text>Paid</text>}
+                </td>
+                <td>
+                    @if (item.DownloadNotes.IsPaid == false)
+                    {
+    <text>$0</text> }
+else
+{
+<text>$@item.DownloadNotes.PurchasedPrice</text>}
+                </td>
+                <td>
+                    @if (@item.DownloadNotes.AttacmentDownloadedDate != null)
+                    {
+    @item.DownloadNotes.AttacmentDownloadedDate.Value.ToString("dd MMM yyyy,HH:mm:ss") }
+else
+{
+<text>N/A</text>}
+                </td>
+                <td>
+                    <a href="/Home/NoteDetail/@item.DownloadNotes.NoteID"><img src="/Content/Front/images/Dashboard/eye.png" class="edit-action" alt="edit-icon" /></a>
+                    <div class="dropdown my-download">
+                        <a class="dropbtn"><img src="/Content/Front/images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                        <div class="dropdown-content">
+                            <a href="/User/DownloadAttechedFile/@item.DownloadNotes.ID">Download Note</a>
+                            <a role="button" data-toggle="modal" data-target="#Review_@item.DownloadNotes.ID">Add Reviews/Feedback</a>
+                            <a role="button" data-toggle="modal" data-target="#DownloadID_@item.DownloadNotes.ID">Report as inapproprite</a>
+                        </div>
+                    </div>
+                    <<div clas="review-popup-section">
+                        <!-- Modal -->
+                        <div class="modal fade" id="Review_@item.DownloadNotes.ID" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">
+                                            Add
+                                            Review
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @using (Html.BeginForm("AddReview/" + @item.DownloadNotes.ID, "User", FormMethod.Post, htmlAttributes: new { }))
+                                    {
+                    <div class="modal-body">
+                        <div id="review-rating">
+                            <div class="ratings-wrapper">
+                                <input type="radio" id="star5_@item.DownloadNotes.ID" name="Ratings" value="5" />
+                                <label for="star5_@item.DownloadNotes.ID" title="text">5 stars</label>
+                                <input type="radio" id="star4_@item.DownloadNotes.ID" name="Ratings" value="4" />
+                                <label for="star4_@item.DownloadNotes.ID" title="text">4 stars</label>
+                                <input type="radio" id="star3_@item.DownloadNotes.ID" name="Ratings" value="3" />
+                                <label for="star3_@item.DownloadNotes.ID" title="text">3 stars</label>
+                                <input type="radio" id="star2_@item.DownloadNotes.ID" name="Ratings" value="2" />
+                                <label for="star2_@item.DownloadNotes.ID" title="text">2 stars</label>
+                                <input type="radio" id="star1_@item.DownloadNotes.ID" name="Ratings" value="1" />
+                                <label for="star1_@item.DownloadNotes.ID" title="text">1 star</label>
+                            </div>
+                            <br><br>
+                        </div>
+                        <div id="write-comment-form">
+                            <div class="form-group">
+                                <div class="justify-content-start">
+                                    <h6>
+                                        <br>
+                                        Comments *
+                                    </h6>
+                                </div>
+                                <textarea name="Remarks" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="comments..." required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                                        <div class="modal-footer justify-content-start">
+
+                                            <div class="add-note-btn">
+                                                <a href=""><button type="submit">Submit</button></a>
+                                            </div>
+                                        </div>}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="review-popup-section">
+                        <!-- Modal -->
+                        <div class="modal fade" id="DownloadID_@item.DownloadNotes.ID" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">@item.DownloadNotes.NoteTitle</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @using (Html.BeginForm("ReportAsInappropriate/" + @item.DownloadNotes.ID, "User", FormMethod.Post, htmlAttributes: new { }))
+                                    {
+                    <div class="modal-body">
+                        <div id="write-comment-form">
+                            <div class="form-group">
+                                <div class="justify-content-start">
+                                    <h6>
+                                        <br>
+                                        Remarks *
+                                    </h6>
+                                </div>
+                                <textarea name="Remarks" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write Remarks" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                                        <div class="modal-footer justify-content-start">
+
+                                            <div class="add-note-btn action-button ml-auto">
+                                                <button type="submit" class="btn-reject">Submit</button>
+                                                <button data-dismiss="modal" class="btn-inreview close">Cancel</button>
+                                            </div>
+                                        </div>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+ { Counter++; }
+        } }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination-section">
+                        <div class="pagination-notes">
+                            <div class="pagination-number">
+                                @Html.PagedListPager(Model, page => Url.Action("MyDownloads", new
+                                {
+                                    page,
+                                    Searchkeyword = Request.QueryString["Searchkeyword"],
+                                    sortBy = Request.QueryString["sortBy"]
+
+                                })
+                                     , new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 5 }
+                                     )
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

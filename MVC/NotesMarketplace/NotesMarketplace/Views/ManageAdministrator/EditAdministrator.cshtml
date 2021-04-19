@@ -1,0 +1,79 @@
+﻿@model NotesMarketplace.Models.EditAdministrator
+
+@{
+    ViewBag.Title = "AddAdministrator";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="profile-form">
+    <!-- Form Area -->
+    <div id="add-detial-form" class="profile-form">
+        @using (Html.BeginForm("EditAdministrator/" + @Model.UserID, "Admin", FormMethod.Post))
+        {
+            <div class="container">
+                <!-- Basic Profile Detail -->
+                <div id="basic-profile-details" class="detail-content-box">
+                    <div class="row">
+                        <div class="horizontal-heading-sm col-md-12 col-sm-12 col-xs-12">
+                            <h3>Add Administrator</h3>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">First Name *</label>
+                                @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @placeholder = "Enter Admin FirstName" })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger error-message" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Last Name *</label>
+                                @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", @placeholder = "Enter Admin LastName" })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger error-message" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email *</label>
+                                @Html.TextBoxFor(x => x.EmailID, new {@readonly="readonly", id = "exampleInputEmail1", @class = "form-control", @placeholder = "Enter Admin Email" })
+                                @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger error-message" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3">
+                                        @Html.DropDownList("PhoneNumberCountryCode", null, htmlAttributes: new { @class = "form-control", name = "PhoneNumberCountryCode" })
+                                        @Html.ValidationMessageFor(model => model.PhoneNumberCountryCode, "", new { @class = "text-danger error-message   " })
+                                    </div>
+                                    <div class="col-md-9 col-sm-9">
+                                        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control phone-number-input", @placeholder = "Enter Phone Number" })
+                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger error-message" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button type="submit" class="btn-general btn-submit-form">submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

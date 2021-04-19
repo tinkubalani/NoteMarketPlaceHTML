@@ -1,0 +1,112 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketplace.Models.MyRejectedNote>
+
+@{ ViewBag.Title = "MyRejectedNotes";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<!--   My Rejected Notes  -->
+<div id="generic-container">
+
+    <div id="component-box">
+
+        <div class="container">
+
+            <div id="download-dashboard">
+
+                <div class="progress-notes-section">
+
+                    <div class="progress-notes-wrapper">
+
+                        <div class="notes-top-wrap">
+                            <div class="row general-dashboard-head general-top-bar">
+                                <div class="horizontal-heading col-md-6 col-sm-12 col-xs-12 text-left">
+                                    <h3>My Rejected Notes</h3>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="progress-note-btn">
+                                        @using (Html.BeginForm("MyRejectedNotes", "User", FormMethod.Get, new { }))
+                                        {
+                            <input type="text" name="Searchkeyword" class="search-enter-progress" placeholder="Search" title="Type
+                                        in a name" />
+                                            <a href=""><button type="submit">Search</button></a>}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="progress-table general-big-table" style="overflow-x: auto;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">sr no.</th>
+                                        <th scope="col">@Html.ActionLink("note title", "MyRejectedNotes", new { sortBy = ViewBag.SortTitleParameter, Searchkeyword = Request.QueryString["Searchkeyword"] })</th>
+                                        <th scope="col">@Html.ActionLink("Category", "MyRejectedNotes", new { sortBy = ViewBag.SortCategoryParameter, Searchkeyword = Request.QueryString["Searchkeyword"] })</th>
+                                        <th scope="col">remarks</th>
+                                        <th scope="col">@Html.ActionLink("Rejected date/time", "MyRejectedNotes", new { sortBy = ViewBag.SortCreatedDateParameter, Searchkeyword = Request.QueryString["Searchkeyword"] })</th>
+                                        <th scope="col" class="text-right">clone</th>
+                                        <th scope="col" class="text-right"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ var Counter = 0;
+
+                                                    if (Model.Count == 0)
+                                                    {
+                                        <tr>
+                                            <td colspan="6" class="text-center">No Any Record Found</td>
+                                        </tr> }
+
+                                                    foreach (var item in Model)
+                                                    {
+                                        <tr>
+                                            <td>@(Counter + ((Model.PageNumber - 1) * Model.PageSize) + 1)</td>
+                                            <td class="title-col"><a href="/Home/NoteDetail/@item.SellerNote.ID">@item.SellerNote.Title</a></td>
+                                            <td>@item.Category.Name</td>
+                                            <td>@item.SellerNote.AdminRemarks</td>
+                                            <td>@item.SellerNote.ModifiedDate.Value.ToString("dd MMM yyyy,HH:mm:ss")</td>
+                                            <td class="text-right"><a href="/User/CloneNote/@item.SellerNote.ID" class="title-col">Clone</a></td>
+                                            <td class="text-right">
+                                                <div class="dropdown sold-notes-menu">
+                                                    <a class="dropbtn"><img src="/Content/Front/images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                    <div class="dropdown-content">
+                                                        <a href="/EditNote/DownloadAttechedFile/@item.SellerNote.ID">Download Note</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr> { Counter++; }
+                                                    } }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination-section">
+                        <div class="pagination-notes">
+                            <div class="pagination-number">
+                                @Html.PagedListPager(Model, page => Url.Action("MyRejectedNotes", new
+                                {
+                                    page,
+                                    Searchkeyword = Request.QueryString["Searchkeyword"],
+                                    sortBy = Request.QueryString["sortBy"]
+
+                                })
+                              , new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 5 }
+                              )
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,184 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+
+@model IPagedList<NotesMarketplace.Models.AllPublishedNotes>
+
+
+<div id="generic-container">
+
+    <div id="component-box">
+
+        <div id="search-page">
+
+            <!-- Background image with some text -->
+            <div class="general-bg-img">
+                <h3 class="text-center">Search Notes</h3>
+            </div>
+
+            <div class="filter-section">
+
+                <div class="container">
+
+                    <div id="notes-filter-wrapper">
+
+                        <div class="horizontal-heading-sm">
+                            <h3>Search and Filter Notes</h3>
+                        </div>
+                        <div class="search-notes">
+                            @using (Html.BeginForm("SearchNotes", "Home", FormMethod.Get, new { @Id = "searchform", @class = "searchform" }))
+                            {
+                                <div class="search-filter">
+                                    <div class="search">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="text" id="search-enter" placeholder="Search notes here..." title="Type in a name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filter">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-2 select-dropdown">
+                                                    @Html.DropDownList("NoteType", new SelectList(ViewBag.NotesType, "ID", "Name"), "Select your Type", new { @class = "arrow-down-icon", id = "NoteType", name = "NoteType", onchange = "searchFunction();" })
+                                                </div>
+                                                <div class="col-md-2 select-dropdown">
+                                                    @Html.DropDownList("Category", new SelectList(ViewBag.NotesCategory, "ID", "Name"), "Select your category", new { @class = "arrow-down-icon", id = "Category", name = "Category", onchange = "searchFunction();" })
+                                                </div>
+                                                <div class="col-md-2 select-dropdown">
+                                                    @Html.DropDownList("University", new SelectList(ViewBag.University), "Select your University", new { @class = "arrow-down-icon", id = "University", name = "University", onchange = "searchFunction();" })
+                                                </div>
+                                                <div class="col-md-2 select-dropdown">
+                                                    @Html.DropDownList("Course", new SelectList(ViewBag.Course), "Select your Course", new { @class = "arrow-down-icon", id = "Course", name = "Course", onchange = "searchFunction();" })
+                                                </div>
+                                                <div class="col-md-2 select-dropdown">
+                                                    @Html.DropDownList("Country", new SelectList(ViewBag.Country, "ID", "Name"), "Select your Country", new { @class = "arrow-down-icon", id = "Country", name = "Country", onchange = "searchFunction();" })
+                                                </div>
+                                                <div class="col-md-2 select-dropdown">
+                                                    @Html.DropDownList("Rating", new SelectList(ViewBag.Rating), "Select Rating", new { @class = "arrow-down-icon", id = "Rating", name = "Rating", onchange = "searchFunction();" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+
+                    <div id="search-results">
+                        <div class="horizontal-heading-sm">
+                            <h3>Total @ViewBag.TotalRecord  Notes</h3>
+                        </div>
+
+                        <div id="search-results-content">
+
+                            @{ var count = 1; }
+
+                            <div class="row">
+
+                                @if (Model.Count == 0)
+                                {
+                                    <div class=" ml-3 vertical-heading-sm">
+                                        <h3>No Any Record Found </h3>
+                                    </div>
+                                }
+
+                                @foreach (var item in Model)
+                                {
+
+                                    <div class="col-md-4 col-sm-6">
+
+                                        <!-- Notes-->
+                                        <div class="note-wrap">
+                                            <div class="note-img">
+                                                <img src="@item.SellerNotes.DisplayPicture" style=" height:253px; width:100%; alt="note-image">
+                                            </div>
+
+                                            <div class="note-title">
+                                                <a href="/Home/NoteDetail/@item.SellerNotes.ID">
+                                                    <h3>@item.SellerNotes.Title</h3>
+                                                </a>
+                                            </div>
+
+                                            <div class="note-details">
+                                                <p><i class="fa fa-university"></i>@item.SellerNotes.UniversityName, @item.Countries.Name</p>
+                                                <p><i class="fa fa-university"></i>@item.SellerNotes.NumberofPages Pages</p>
+                                                <p><i class="fa fa-university"></i>@item.SellerNotes.PubilshedDate.Value.ToString("ddd, MMM dd yyyy")</p>
+                                                <p><i class="fa fa-flag"></i><span>@item.SellerNotes.SellerNotesReportedIssues.Where(x => x.NoteID == item.SellerNotes.ID).Count() Users marked this note as inappropriate</span></p>
+                                            </div>
+
+                                            <div>
+                                                <div class="ratings-wrapper">
+                                                    @{
+                                                        var ratingSum = @item.SellerNotes.SellerNotesReviews.Where(x => x.NoteID == @item.SellerNotes.ID).Select(x => x.Ratings).Sum();
+                                                        var ratingCount = @item.SellerNotes.SellerNotesReviews.Where(x => x.NoteID == @item.SellerNotes.ID).Select(x => x.Ratings).Count();
+                                                    }
+                                                    @if (ratingCount > 0)
+                                                    {
+
+                                                        for (int i = 1; i <= Math.Round(ratingSum / ratingCount); i++)
+                                                        {
+                                                            <i class="text-warning fa fa-star"></i>
+                                                        }
+                                                        for (int i = 1; i <= 5 - Math.Round(ratingSum / ratingCount); i++)
+                                                        {
+                                                            <i class="text-muted fa fa-star"></i>
+                                                        }
+                                                    }
+                                                    @if (ratingCount == 0)
+                                                    {
+                                                        for (int i = 1; i <= 5; i++)
+                                                        {
+                                                            <i class="text-muted fa fa-star"></i>
+                                                        }
+                                                    }
+                                                </div>
+                                                <p>@item.SellerNotes.SellerNotesReviews.Where(x => x.NoteID == @item.SellerNotes.ID).Select(x => x.Ratings).Count() Review</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    if (count % 3 == 0)
+                                    {
+                                    @:</div>
+                                    @:<div class="row">
+                                    }
+                                    count++;
+                                }
+
+
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Pagination Part -->
+                        <div class="pagination-section">
+                            <div class="pagination-notes">
+                                <div class="pagination-number">
+
+                                    @Html.PagedListPager(Model, page => Url.Action("SearchNotes", new
+                               {
+                                   page,
+                                   search = Request.QueryString["search"],
+                                   Country = Request.QueryString["Country"],
+                                   Category = Request.QueryString["Category"],
+                                   NoteType = Request.QueryString["NoteType"],
+                                   University = Request.QueryString["University"],
+                                   Course = Request.QueryString["Course"],
+                                   Rating = Request.QueryString["Rating"],
+                               }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 5 })
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

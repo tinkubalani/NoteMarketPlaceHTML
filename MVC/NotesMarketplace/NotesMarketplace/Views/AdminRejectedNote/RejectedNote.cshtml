@@ -1,0 +1,135 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "RejectedNote";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="manage-administrator">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                @if (TempData["success"] != null)
+                {
+                    <div class="mt-2 alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>@TempData["success"] !</strong> @TempData["message"]
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+            </div>
+            <div class="horizontal-heading-sm col-md-12 col-sm-12 col-xs-12">
+                <h3>Rejected Notes</h3>
+            </div>
+        </div>
+
+        @using (Html.BeginForm("RejectedNote", "Admin", FormMethod.Get, new { id = "AllSeachNote" }))
+        {
+            <div class="row top-bar">
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>Seller</label>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-3 col-xs-6">
+                                @Html.DropDownList("SellerName", (SelectList)ViewBag.SellerName, "Select Seller", new { id = "SellerName", name = "SellerName", @class = "form-control arrow-down-icon", onchange = "NoteFunction();" })
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 scroll-center">
+                    <div class="progress-note-btn margin-top">
+                        <input type="text" name="Search" class="search-enter-progress" placeholder="Search" title="Type
+                                        in a name" />
+                        <a href=""><button type="submit">Search</button></a>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="table-area">
+
+            <div class="progress-table general-big-table" style="overflow-x: auto;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">sr no.</th>
+                            <th scope="col">@Html.ActionLink("Note Title", "RejectedNote", new { SortBy = ViewBag.TitleSortParamPublish, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">@Html.ActionLink("Category", "RejectedNote", new { SortBy = ViewBag.CategorySortParamPublish, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">@Html.ActionLink("seller", "RejectedNote", new { SortBy = ViewBag.SellerSortParamPublish, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">@Html.ActionLink("Date added", "RejectedNote", new { SortBy = ViewBag.DateSortParamPublish, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">@Html.ActionLink("rejected by", "RejectedNote", new { SortBy = ViewBag.AdminSortParamPublish, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">Remark</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+
+                            IPagedList<NotesMarketplace.Models.RejectedNoteAdmin> RejctedNote = ViewBag.NotesUnderReview;
+                        }
+
+                        @{
+                            var count = 0;
+                            if (RejctedNote.Count == 0)
+                            {
+                                <tr>
+                                    <td colspan="9" class="text-center NoRecord">No Records Found</td>
+                                </tr>
+                            }
+                        }
+                        @foreach (var item in RejctedNote)
+                        {
+                            <tr>
+                                <td>@(count + ((RejctedNote.PageNumber - 1) * RejctedNote.PageSize) + 1)</td>
+                                <td class="title-col"><a href="/Admin/NoteDetail/@item.NoteDetails.ID">@item.NoteDetails.Title</a></td>
+                                <td>@item.Category.Name</td>
+                                <td>@item.User.FirstName @item.User.LastName<a href="/AdminMember/MemberDetail/@item.User.ID" class="ml-3"><img src="/Content/Admin/images/admin/eye.png"></a></td>
+                                <td>@item.NoteDetails.ModifiedDate.Value.ToString("dd-MM-yyyy, HH:mm")</td>
+                                <td>@item.Admin.FirstName @item.Admin.LastName</td>
+                                <td>@item.NoteDetails.AdminRemarks</td>
+                                <td>
+                                    <div class="dropdown admin-notes-menu">
+                                        <a role="button" class="dropbtn"><img src="/Content/Admin/images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                        <div class="dropdown-content">
+                                            <a href="/Admin/ApproveRejected/@item.NoteDetails.ID">Approve</a>
+                                            <a href="/Admin/DownloadAttechedFile/@item.NoteDetails.ID">Download Notes</a>
+                                            <a href="/Admin/NoteDetail/@item.NoteDetails.ID">View More Details</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            { count = count + 1; }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-section">
+                <div class="pagination-notes">
+                    <div class="pagination-number">
+                        @Html.PagedListPager(RejctedNote, page => Url.Action("RejectedNote", new
+                   {
+                       page,
+                       Search = Request.QueryString["Search"],
+                       SortBy = Request.QueryString["SortBy"],
+                       SellerName = Request.QueryString["SellerName"]
+
+                   })
+                            , new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 5 }
+                        )
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

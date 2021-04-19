@@ -1,0 +1,273 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+
+<div id="generic-container">
+    <div id="component-box">
+
+
+        <div class="container">
+            <div id="dashboard-section">
+
+                <div class="dashboard-bar">
+                    <div class="row dashboard-head">
+                        <div class="col-md-12">
+                            @if (TempData["internetnotconnected"] != null)
+                            {
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>@TempData["internetnotconnected"] !</strong> You Are Offline, Please Check Your Internet!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            }
+                            @if (TempData["success"] != null)
+                            {
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>@TempData["success"] !</strong> @TempData["message"]
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                        <div class="horizontal-heading col-md-6 col-sm-6 col-xs-6">
+                            <h3>Dashboard</h3>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                            <div class="add-note-btn">
+                                <a href="/AddNote/AddNote"><button>add note</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-earning-stats">
+                        <div class="flex-container">
+                            <div style="flex-grow: 5" id="dash-title">
+                                <div class="title">
+                                    <img src="~/Content/Front/images/Dashboard/dashboard.png" id="dashboard-img" alt="dashboard-image" /><br />
+                                    <h3><span id="earning">My Earning</span></h3>
+                                </div>
+                            </div>
+                            <div style="flex-grow: 6" id="num-of-notes">
+                                <div class="number-of-notes">
+                                    <a href="/User/MySoldNotes/"><h6>@ViewBag.MySoldNotes</h6></a>
+                                    <span>Number of Notes Sold</span>
+                                </div>
+                            </div>
+                            <div style="flex-grow: 6" id="money-ern">
+                                <div class="money-earned">
+                                    <h6>$@ViewBag.MyTotalEarning</h6>
+                                    <span>Money Earned</span>
+                                </div>
+                            </div>
+                            <div style="flex-grow: 4">
+                                <div class="downloads">
+                                    <a href="/User/MyDownloads"><h6>@ViewBag.MyDownloadNotes</h6></a>
+                                    <span>My Downloads</span>
+                                </div>
+                            </div>
+                            <div style="flex-grow: 4">
+                                <div class="rejected-notes">
+                                    <a href="/User/MyRejectedNotes"><h6>@ViewBag.MyRejectedNotes</h6></a>
+                                    <span>My Rejected Notes</span>
+                                </div>
+                            </div>
+                            <div style="flex-grow: 4" id="requests">
+                                <div class="requests">
+                                    <a href="/User/BuyerRequests"><h6>@ViewBag.TotlaBuyerRequest</h6></a>
+                                    <span>Buyer Requests</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-notes-section">
+
+                    <div class="progress-notes-wrapper">
+
+                        <div class="notes-top-wrap">
+                            <div class="row general-dashboard-head">
+                                <div class="horizontal-heading-sm col-md-6 col-sm-12 col-xs-12 text-left">
+                                    <h3>In Progress Notes</h3>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="progress-note-btn">
+                                        @using (Html.BeginForm("Index", "User", FormMethod.Get))
+                                        {
+                                            <input type="text" name="searchInProgress" class="search-enter-progress" placeholder="Search" title="Type
+                                        in a name" />
+                                            <a href=""><button type="submit">Search</button></a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="progress-table" style="overflow-x: auto;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" title="Click to sort records">@Html.ActionLink("add date", "Index", new { sortByForProgress = ViewBag.SortCreatedDateParameter, searchInProgress = Request.QueryString["searchInProgress"] })</th>
+                                        <th scope="col" title="Click to sort records">@Html.ActionLink("title", "Index", new { sortByForProgress = ViewBag.SortTitleParameter, searchInProgress = Request.QueryString["searchInProgress"] })</th>
+                                        <th scope="col" title="Click to sort records">@Html.ActionLink("category", "Index", new { sortByForProgress = ViewBag.SortCategoryParameter, searchInProgress = Request.QueryString["searchInProgress"] })</th>
+                                        <th scope="col" title="Click to sort records">@Html.ActionLink("status", "Index", new { sortByForProgress = ViewBag.SortStatusParameter, searchInProgress = Request.QueryString["searchInProgress"] })</th>
+                                        <th scope="col">ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        IPagedList<NotesMarketplace.Models.UserInProgressNoteViewModel> Inprogerss = ViewBag.ProgressNotes;
+                                        IPagedList<NotesMarketplace.Models.UserPublishedNoteViewModel> Published = ViewBag.PublishedNotes;
+                                    }
+
+                                    @if (Inprogerss.Count == 0)
+                                    {
+                                        <tr>
+                                            <td colspan="5" class="text-center">No Any Record Found</td>
+                                        </tr>
+                                    }
+
+                                    @foreach (var note in Inprogerss)
+                                    {
+                                        <tr>
+                                            <td>@note.SellerNotes.CreatedDate.Value.ToShortDateString()</td>
+                                            <td>@note.SellerNotes.Title</td>
+                                            <td>@note.NoteCategories.Name</td>
+                                            <td>@note.ReferenceDatas.Value</td>
+                                            <td>
+                                                @if (@note.ReferenceDatas.Value == "Draft")
+                                                {
+                                                    <a href="/EditNote/EditNote/@note.SellerNotes.ID" title="Edit Record"><img src="/Content/Front/images/Dashboard/edit.png" class="edit-action" alt="edit-icon" /></a>
+                                                    <a href="/DeleteNote/DeleteNote/@note.SellerNotes.ID" title="Delete Record" onclick="return confirm('Are You Sure You Want to delete This Record?')"><img src="/Content/Front/images/Dashboard/delete-2.png" alt="delete-icon" /></a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/Home/NoteDetail/@note.SellerNotes.ID" title="View Detail"><img src="/Content/Front/images/Dashboard/eye.png" alt="edit-icon" /></a>
+                                                }
+
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination-section">
+                        <div class="pagination-notes">
+                            <div class="pagination-number">
+
+                                @Html.PagedListPager(Inprogerss, ProgressNotespage => Url.Action("Index", new
+                           {
+                               ProgressNotespage,
+                               searchInProgress = Request.QueryString["searchInProgress"],
+                               sortByForProgress = Request.QueryString["sortByForProgress"]
+                           }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 5 })
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="published-notes-section">
+
+                    <div class="published-notes-wrapper">
+
+                        <div class="notes-top-wrap">
+                            <div class="row general-dashboard-head">
+                                <div class="horizontal-heading-sm col-md-6 col-sm-12 col-xs-12 text-left">
+                                    <h3>Published Notes</h3>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="progress-note-btn">
+                                        @using (Html.BeginForm("Index", "User", FormMethod.Get))
+                                        {
+                                            <input type="text" name="searchPublished" class="search-enter-progress" placeholder="Search" title="Type
+                                        in a name" />
+                                            <a href=""><button type="submit">Search</button></a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="progress-table" style="overflow-x: auto;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" title="Click to sort records">@Html.ActionLink("add date", "Index", new { sortByForPublished = ViewBag.SortCreatedDateParameterPublish, searchPublished = Request.QueryString["searchPublished"] })</th>
+                                        <th scope="col" title="Click to sort records">@Html.ActionLink("title", "Index", new { sortByForPublished = ViewBag.SortTitleParameterPublish, searchPublished = Request.QueryString["searchPublished"] })</th>
+                                        <th scope="col" title="Click to sort records">@Html.ActionLink("category", "Index", new { sortByForPublished = ViewBag.SortCategoryParameterPublish, searchPublished = Request.QueryString["searchPublished"] })</th>
+                                        <th scope="col" title="Click to sort records">@Html.ActionLink("sell type", "Index", new { sortByForPublished = ViewBag.SortSellTypeParameterPublish, searchPublished = Request.QueryString["searchPublished"] })</th>
+                                        <th scope="col" title="Click to sort records">@Html.ActionLink("price", "Index", new { sortByForPublished = ViewBag.SortPriceParameterPublish, searchPublished = Request.QueryString["searchPublished"] })</th>
+                                        <th scope="col">ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Published.Count == 0)
+                                    {
+                                        <tr>
+                                            <td colspan="6" class="text-center">No Any Record Found</td>
+                                        </tr>
+                                    }
+                                    @foreach (var item in Published)
+                                    {
+                                        <tr>
+                                            <td>@item.SellerNotes.PubilshedDate.Value.ToShortDateString()</td>
+                                            <td>@item.SellerNotes.Title</td>
+                                            <td>@item.NoteCategories.Name</td>
+                                            <td>
+                                                @if (@item.SellerNotes.IsPaid == true)
+                                                {
+                                                    <p>Paid</p>
+                                                }
+                                                else
+                                                {
+                                                    <p>Free</p>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (@item.SellerNotes.IsPaid == true)
+                                                {
+                                                    <p>$@item.SellerNotes.SellingPrice</p>
+                                                }
+                                                else
+                                                {
+                                                    <p>$0</p>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a href="/Home/NoteDetail/@item.SellerNotes.ID" title="View Detail"><img src="/Content/Front/images/Dashboard/eye.png" alt="view-icon" /></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination-section">
+                        <div class="pagination-notes">
+                            <div class="pagination-number">
+
+                                @Html.PagedListPager(Published, PublishedNotespage => Url.Action("Index", new
+                           {
+                               PublishedNotespage,
+                               searchPublished = Request.QueryString["searchPublished"],
+                               sortByForPublished = Request.QueryString["sortByForPublished"]
+                           }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 5 })
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

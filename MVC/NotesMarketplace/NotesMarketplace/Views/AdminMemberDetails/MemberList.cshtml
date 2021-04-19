@@ -1,0 +1,138 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketplace.Models.User>
+@{ 
+    IEnumerable<NotesMarketplace.Models.Download> downloads = ViewBag.Download;
+    IEnumerable<NotesMarketplace.Models.SellerNote> sellerNotes = ViewBag.SellerNotes;
+    IEnumerable<NotesMarketplace.Models.ReferenceData> referenceDatas = ViewBag.ReferenceData;
+}
+
+@{
+    ViewBag.Title = "MemberList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+    <div id="download-dashboard">
+
+        <div class="progress-notes">
+
+            <div class="progress-notes-inner">
+
+                <div class="progress-notes-top ">
+                    <div class="row progress-dashboard general-top-bar">
+                        <div class="col-md-12">
+                            @if (TempData["success"] != null)
+                            {
+                                <div class="mt-2 alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>@TempData["success"] !</strong> @TempData["message"]
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                        <div class="horizontal-heading col-md-6 col-sm-12 col-xs-12 text-left">
+                            <h3>Members</h3>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="progress-note-btn">
+                                @using (Html.BeginForm("MemberList", "AdminMember", FormMethod.Get, new { }))
+                                {
+                                    <input type="text" name="search" class="search-enter-progress" placeholder="Search" title="Type
+                                        in a name" />
+                                    <a href=""><button type="submit">Search</button></a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-area">
+
+                    <div class="progress-table general-big-table" style="overflow-x: auto;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">sr no.</th>
+                                    <th scope="col">@Html.ActionLink("first name", "MemberList", new { sortBy = ViewBag.SortFirstNameParameter, search = Request.QueryString["search"] })</th>
+                                    <th scope="col">@Html.ActionLink("last name", "MemberList", new { sortBy = ViewBag.SortLastNameParameter, search = Request.QueryString["search"] })</th>
+                                    <th scope="col">@Html.ActionLink("email", "MemberList", new { sortBy = ViewBag.SortEmailParameter, search = Request.QueryString["search"] })</th>
+                                    <th scope="col">@Html.ActionLink("Joining date", "MemberList", new { sortBy = ViewBag.SortJoinDateParameter, search = Request.QueryString["search"] })</th>
+                                    <th scope="col" class="text-center">under review<br>notes</th>
+                                    <th scope="col" class="text-center">published<br>notes</th>
+                                    <th scope="col" class="text-center">downloaded<br>notes</th>
+                                    <th scope="col" class="text-center">@Html.ActionLink("totle expenses", "MemberList", new { sortBy = ViewBag.SortEarningParameter, search = Request.QueryString["search"] })</th>
+                                    <th scope="col" class="text-center">@Html.ActionLink("totle earning", "MemberList", new { sortBy = ViewBag.SortExpenceParameter, search = Request.QueryString["search"] })</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    var Counter = 0;
+
+                                    if (Model.Count == 0)
+                                    {
+                                        <tr>
+                                            <td colspan="10" class="text-center">No Any Record Found</td>
+                                        </tr>
+                                    }
+
+                                    foreach (var member in Model)
+                                    {
+                                        <tr>
+                                            <td>@(Counter + ((Model.PageNumber - 1) * Model.PageSize) + 1)</td>
+                                            <td>@member.FirstName</td>
+                                            <td>@member.LastName</td>
+                                            <td>@member.EmailID</td>
+                                            <td>@member.CreatedDate.Value.ToString("dd-MM-yyyy, HH:mm")</td>
+                                            <td class="text-center title-col"><a href="/Admin/NotesUnderReview?SellerName=@member.FirstName@member.LastName">@sellerNotes.Where(x=> (x.SellerID == member.ID && x.Status == referenceDatas.Where(r=>r.Value.ToLower() == "in review").Select(r=>r.ID).FirstOrDefault()) 
+                                                                                                                || (x.SellerID == member.ID && x.Status == referenceDatas.Where(r => r.Value.ToLower() == "submitted for review").Select(r => r.ID).FirstOrDefault())).Count()</a></td>
+                                            <td class="text-center title-col"><a href="/Admin/PublishedNotes?SellerName=@member.FirstName@member.LastName">@sellerNotes.Where(x =>x.SellerID == member.ID && x.Status == referenceDatas.Where(r => r.Value.ToLower() == "published").Select(r => r.ID).FirstOrDefault()).Count()</a></td>
+                                            <td class="text-center title-col"><a href="/Admin/DownloadedNotes?BuyerName=@member.FirstName@member.LastName">@downloads.Where(x => x.Downloader == member.ID && x.IsAttachementDownloaded == true && x.AttachmentPath != null).Count()</a></td>
+                                            <td class="text-center title-col"><a href="/Admin/DownloadedNotes?BuyerName=@member.FirstName@member.LastName">$@downloads.Where(x => x.Downloader == member.ID ).Sum(x => x.PurchasedPrice)</a></td>
+                                            <td class="text-center">$@downloads.Where(x=>x.Seller == member.ID).Sum(x=>x.PurchasedPrice)</td>
+                                            <td>
+                                                <div class="dropdown admin-notes-menu">
+                                                    <a class="dropbtn"><img src="/Content/Admin/images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                    <div class="dropdown-content">
+                                                        <a href="/AdminMember/MemberDetail/@member.ID">View More Details</a>
+                                                        <a href="/AdminMember/DeactivateMember/@member.ID" onclick="return confirm('Are You Sure You Want To Deactivate This User?')">Deactivate</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        { Counter++; }
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-section">
+                <div class="pagination-notes">
+                    <div class="pagination-number">
+                        @Html.PagedListPager(Model, page => Url.Action("MemberList", new
+                   {
+                       page,
+                       search = Request.QueryString["search"],
+                       sortBy = Request.QueryString["sortBy"]
+                   }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true,MaximumPageNumbersToDisplay = 5 })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+

@@ -1,0 +1,329 @@
+﻿@model NotesMarketplace.Models.SellerNote
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div id="note-details-page">
+
+    <div class="container">
+
+        <!-- Note Details -->
+        <div id="note-detail">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="notes-horizontal-heading">
+                        <h3>Note Details</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <!-- not-detail-left -->
+                    <div id="not-detail-left">
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="note-img">
+                                    <img src="@Model.DisplayPicture" alt="note-image">
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="note-title horizontal-heading-sm">
+                                    <h3>@Model.Title</h3>
+                                    <p>@ViewBag.Category</p>
+                                </div>
+                                <div class="note-detail">
+                                    <p>@Model.Description</p>
+                                </div>
+                                <div class="download-btn">
+                                    @if (@Model.IsPaid == false)
+                                    {
+                                        <a href="/Admin/DownloadAttechedFile/@Model.ID"><button>download</button></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/Admin/DownloadAttechedFile/@Model.ID"><button><text>download/</text><span>$@Model.SellingPrice</span></button></a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <!-- not-detail-right -->
+                    <div id="not-detail-right">
+
+                        <div class="d-flex">
+                            <span class="mr-auto title">Institution:</span>
+                            <div class="ml-auto title-velue">
+                                @if (@Model.UniversityName != null)
+                                {
+                                    @Model.UniversityName
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <span class="mr-auto title">Country:</span>
+                            <span class="ml-auto title-velue">
+                                @if (@ViewBag.Country != null)
+                                {
+                                    @ViewBag.Country
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
+                            </span>
+                        </div>
+                        <div class="d-flex">
+                            <span class="mr-auto title">Course Name:</span>
+                            <span class="ml-auto title-velue">
+                                @if (@Model.Course != null)
+                                {
+                                    @Model.Course
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
+                            </span>
+                        </div>
+                        <div class="d-flex">
+                            <span class="mr-auto title">Course Code:</span>
+                            <span class="ml-auto title-velue">
+                                @if (@Model.CourseCode != null)
+                                {
+                                    @Model.CourseCode
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
+                            </span>
+                        </div>
+                        <div class="d-flex">
+                            <span class="mr-auto title">Professor:</span>
+                            <span class="ml-auto title-velue">
+                                @if (@Model.Professor != null)
+                                {
+                                    @Model.Professor
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
+                            </span>
+                        </div>
+                        <div class="d-flex">
+                            <span class="mr-auto title">Number of pages:</span>
+                            <span class="ml-auto title-velue">
+                                @if (@Model.NumberofPages != null)
+                                {
+                                    @Model.NumberofPages
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
+                            </span>
+                        </div>
+                        <div class="d-flex">
+                            <span class="mr-auto title">Approved Date:</span>
+                            <span class="ml-auto title-velue">
+                                @if (@Model.PubilshedDate != null)
+                                {
+                                    @Model.PubilshedDate.Value.ToString("dd MMMM yyyy")
+                                }
+                                else
+                                {
+                                    <text>N/A</text>
+                                }
+                            </span>
+                        </div>
+                        <div class="d-flex">
+                            <span class="mr-auto title">Rating:</span>
+                            <span class="ml-auto title-velue">
+                                @{
+                                    var ratingSum = @Model.SellerNotesReviews.Where(x => x.NoteID == @Model.ID).Select(x => x.Ratings).Sum();
+                                    var ratingCount = @Model.SellerNotesReviews.Where(x => x.NoteID == @Model.ID).Select(x => x.Ratings).Count();
+                                }
+                                @if (ratingCount > 0)
+                                {
+
+                                    for (int i = 1; i <= Math.Round(ratingSum / ratingCount); i++)
+                                    {
+                                        <i class="text-warning fa fa-star"></i>
+                                    }
+                                    for (int i = 1; i <= 5 - Math.Round(ratingSum / ratingCount); i++)
+                                    {
+                                        <i class="text-muted fa fa-star"></i>
+                                    }
+                                }
+                                @if (ratingCount == 0)
+                                {
+                                    for (int i = 1; i <= 5; i++)
+                                    {
+                                        <i class="text-muted fa fa-star"></i>
+                                    }
+                                }
+                                @Model.SellerNotesReviews.Where(x => x.NoteID == Model.ID).Select(x => x.Ratings).Count() reviews
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="inappropriate-mark">
+                                    <p><span>@Model.SellerNotesReportedIssues.Where(x => x.NoteID == Model.ID).Count() User marked this note as inappropriate.</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Note Preview and customer reviews -->
+        <div id="note-preview">
+            <div class="row">
+
+                <div class="col-md-5">
+                    <!-- not-preview-left -->
+                    <div id="not-preview-left">
+
+                        <div class="notes-horizontal-heading">
+                            <h3>Notes Preview</h3>
+                        </div>
+
+                        @if (@Model.NotesPreview == null)
+                        {
+                            <div id="notes-preview">
+                                <div class="notes-horizontal-heading">
+                                    <h3>Preview Is Not Available</h3>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div id="notes-preview">
+                                <div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz">
+                                    <div class="responsive-wrapper responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
+                                        <iframe src="@Model.NotesPreview">
+                                            <p style="font-size: 110%;">
+                                                <em>
+                                                    <strong>ERROR: </strong>
+                                                    An &#105;frame should be displayed here but your browser version does not support &#105;frames.
+                                                </em> Please update your browser to its most recent version and try again, or access the file <a href="http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf">with this link.</a>
+                                            </p>
+                                        </iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-7">
+                    <!-- not-preview-customer-review-left -->
+                    <div id="not-preview-right">
+
+                        <div class="notes-horizontal-heading">
+                            <h3>Customer Reviews</h3>
+                        </div>
+
+                        @{
+                            var lastThreeReview = (from p in Model.SellerNotesReviews
+                                                   orderby p.CreatedDate descending
+                                                   select p);
+
+                            if (lastThreeReview.Count() == 0)
+                            {
+                                <div class="notes-horizontal-heading">
+                                    <h3>No Reviews Are Available</h3>
+                                </div>
+                            }
+                            else
+                            {
+                                <div id="testmonials" style="overflow: auto; height:360px;">
+                                    @foreach (var item in lastThreeReview)
+                                    {
+
+                                        <!-- Testmonials -->
+
+                                        <div class="testimonial">
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <div class="customer-img">
+                                                        <img class="img-responsive" src="@item.User.UserProfiles.Where(x => x.UserID == item.ReviewedBy).FirstOrDefault().ProfilePicture " alt="customer-image">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <div class="customer-nam-des">
+                                                        <h3>@item.User.FirstName</h3>
+                                                        <div class="row">
+
+                                                            <div class="rate">
+                                                                @if (ratingCount > 0)
+                                                                {
+
+                                                                    for (int i = 1; i <= @item.Ratings; i++)
+                                                                    {
+                                                                        <i class="text-warning fa fa-star"></i>
+                                                                    }
+                                                                    for (int i = 1; i <= 5 - @item.Ratings; i++)
+                                                                    {
+                                                                        <i class="text-muted fa fa-star"></i>
+                                                                    }
+                                                                }
+                                                                @if (ratingCount == 0)
+                                                                {
+                                                                    for (int i = 1; i <= 5; i++)
+                                                                    {
+                                                                        <i class="text-muted fa fa-star"></i>
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <p>@item.Comments</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <a href="/Admin/DeleteReview/@item.ID" onclick="return confirm('Are You Sure You Want To Delete This Review?')" role="button"><img src="/Content/Admin/images/admin/delete.png" alt="delete-icon"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

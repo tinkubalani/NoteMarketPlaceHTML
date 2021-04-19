@@ -1,0 +1,117 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "SpamReports";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    IPagedList<NotesMarketplace.Models.SpamReportedAdmin> SpamReportNote = ViewBag.NotesSpamReport;
+}
+
+<div class="container">
+
+    <div id="download-dashboard">
+
+        <div class="progress-notes">
+
+            <div class="progress-notes-inner">
+
+                <div class="progress-notes-top ">
+                    <div class="row progress-dashboard general-top-bar">
+                        <div class="horizontal-heading col-md-6 col-sm-12 col-xs-12 text-left">
+                            <h3>Spam Reports</h3>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="progress-note-btn">
+                                @using (Html.BeginForm("SpamReports", "Admin", FormMethod.Get, new { id = "AllSeachNote" }))
+                                {
+                                    <input type="text" name="Search" class="search-enter-progress" placeholder="Search" title="Type
+                                        in a name" />
+                                    <a href=""><button type="submit">Search</button></a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-area">
+
+                    <div class="progress-table general-big-table" style="overflow-x: auto;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">sr no.</th>
+                                    <th scope="col">@Html.ActionLink("Reported By", "SpamReports", new { SortOrder = ViewBag.ReportedBySortParam, Search = Request.QueryString["Search"] })</th>
+                                    <th scope="col">@Html.ActionLink("TITLE", "SpamReports", new { SortOrder = ViewBag.TitleSortParam, Search = Request.QueryString["Search"] })</th>
+                                    <th scope="col">@Html.ActionLink("CATEGORY", "SpamReports", new { SortOrder = ViewBag.CategorySortParam, Search = Request.QueryString["Search"] })</th>
+                                    <th scope="col">@Html.ActionLink("DATE ADDED", "SpamReports", new { SortOrder = ViewBag.DateSortParam, Search = Request.QueryString["Search"] })</th>
+                                    <th scope="col">remark</th>
+                                    <th scope="col">action</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    var count = 0;
+                                    if (SpamReportNote.Count == 0)
+                                    {
+                                        <tr>
+                                            <td colspan="9" class="text-center NoRecord">No Records Found</td>
+                                        </tr>
+                                    }
+                                }
+                                @foreach (var item in SpamReportNote)
+                                {
+                                    <tr>
+                                        <td>@(count + ((SpamReportNote.PageNumber - 1) * SpamReportNote.PageSize) + 1)</td>
+                                        <td>@item.user.FirstName @item.user.LastName</td>
+                                        <td class="title-col"><a href="/Admin/NoteDetail/@item.NoteDetails.ID">@item.NoteDetails.Title</a></td>
+                                        <td>@item.Category.Name</td>
+                                        <td>@item.Reports.ModifiedDate.Value.ToString("dd-MM-yyyy, HH:mm")</td>
+                                        <td>@item.Reports.Remarks</td>
+                                        <td><a onclick="return confirm('Are You Sure For Delete ?')" class="dropbtn " href="/Admin/DeleteSpamReport/@item.Reports.ID"><img src="/Content/Admin/images/Dashboard/delete.png" alt="delete-icon" /></a></td>
+                                        <td>
+                                            <div class="dropdown admin-notes-menu">
+                                                <a class="dropbtn"><img src="/Content/Admin/images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                                <div class="dropdown-content">
+                                                    <a href="/Admin/DownloadAttechedFile/@item.NoteDetails.ID">Download Notes</a>
+                                                    <a href="/Admin/NoteDetail/@item.NoteDetails.ID">View More Details</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    { count = count + 1; }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-section">
+                <div class="pagination-notes">
+                    <div class="pagination-number">
+                        @Html.PagedListPager(SpamReportNote, page => Url.Action("SpamReports", new
+                        {
+                            page,
+                   Search = Request.QueryString["Search"],
+                  SortOrder = Request.QueryString["SortOrder"],
+
+                      })
+                   , new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 5 }
+                   )
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+

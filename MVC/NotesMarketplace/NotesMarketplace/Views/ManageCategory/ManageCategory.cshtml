@@ -1,0 +1,127 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketplace.Models.NoteCategory>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    IEnumerable<NotesMarketplace.Models.User> user = ViewBag.Users;
+}
+
+<div class="manage-administrator">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                @if (TempData["success"] != null)
+                {
+                    <div class="mt-2 alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>@TempData["success"] !</strong> @TempData["message"]
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+            </div>
+            <div class="horizontal-heading-sm col-md-12 col-sm-12 col-xs-12">
+                <h3>Manage Category</h3>
+            </div>
+        </div>
+
+        <div class="row top-bar">
+            <div class="col-md-6">
+                <a href="/Admin/AddCategory"><button class="btn-add-detail">add category</button></a>
+            </div>
+            <div class="col-md-6">
+                <div class="progress-note-btn">
+                    @using (Html.BeginForm("ManageCategory", "Admin", FormMethod.Get))
+                    {
+                        <input type="text" name="Search" class="search-enter-progress" placeholder="Search" title="Type
+                                        in a name" />
+                        <a href=""><button type="submit">Search</button></a>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="table-area">
+
+            <div class="progress-table general-big-table" style="overflow-x: auto;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">sr no.</th>
+                            <th scope="col">@Html.ActionLink("CATEGORY", "ManageCategory", new { SortOrder = ViewBag.NameSortParam, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">@Html.ActionLink("DESCRIPTION", "ManageCategory", new { SortOrder = ViewBag.DescriptionSortParam, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">@Html.ActionLink("DATE ADDED", "ManageCategory", new { SortOrder = ViewBag.DateSortParam, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">@Html.ActionLink("ADDED BY", "ManageCategory", new { SortOrder = ViewBag.AddedBySortParam, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">active</th>
+                            <th scope="col">action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var count = 0;
+                            if (Model.Count == 0)
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center NoRecord">No Records Found</td>
+                                </tr>
+                            }
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(count + ((Model.PageNumber - 1) * Model.PageSize) + 1)</td>
+                                <td>@item.Name</td>
+                                <td>@item.Description</td>
+                                <td>@item.ModifiedDate.Value.ToString("dd-MM-yyyy, HH:mm")</td>
+                                <td>@user.Where(x => x.ID == @item.ModifiedBy).Select(y => y.FirstName + " " + y.LastName).FirstOrDefault()</td>
+                                <td>
+                                    @if (@item.IsActive == true)
+                                    {
+                                        <text>Yes</text>
+                                    }
+                                    else
+                                    {
+                                        <text>NO</text>
+                                    }
+                                </td>
+                                <td>
+                                    <a onclick="return confirm('Are you sure you want to Edit this category?')" href="/Admin/EditCategory/@item.ID"><img src="/Content/Admin/images/admin/edit.png" class="edit-action" alt="edit-icon" /></a>
+                                    <a onclick="return confirm('Are you sure you want to Delete This Category?')" href="/Admin/DeleteCategory/@item.ID"><img src="/Content/Admin/images/admin/delete.png" class="edit-action" alt="delete-icon" /></a>
+                                </td>
+                            </tr>
+                            { count = count + 1; }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-section">
+                <div class="pagination-notes">
+                    <div class="pagination-number">
+                        @Html.PagedListPager(Model, page => Url.Action("ManageCategory", new
+                        {
+                            page,
+                  Search = Request.QueryString["Search"],
+                   SortOrder = Request.QueryString["SortOrder"]
+                 })
+               , new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 5 }
+               )
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

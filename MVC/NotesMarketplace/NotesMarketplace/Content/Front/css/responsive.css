@@ -1,0 +1,1480 @@
+/*==================================================
+              Mobile Menu      
+==================================================*/
+
+button:focus{
+    outline: 5px auto #d3d3d3;
+}
+
+
+#mobile-menu-button i{
+    font-size: 25px;
+    color: #6255a5
+}
+
+
+/*==================================================
+      Media Queries according to Bootstrap v4.5.3        
+==================================================*/
+
+@media (min-width: 1441px) and (max-width: 1920px) {
+    .container {
+        max-width: 1700px;
+    }
+}
+
+@media (min-width: 1301px) and (max-width: 1440px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+
+/* Medium Devices (Landscape Tablets & Medium Desktops) */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    
+    .navbar .navbar-brand img {
+        width: 210px;
+    }
+    .navbar .navbar-nav .nav-link{
+        font-size: 13px;
+    }
+    li.nav-item{
+        padding: 0px 12px;
+    }
+    
+    
+}
+
+
+/* Small Devices (Portrait Tablets & Small Desktops) */
+
+@media (min-width: 767px) and (max-width: 991.5px) {
+
+    .container {
+        max-width: 95%;
+    }
+    
+    a.user-icon-profile.nav-link.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dropdown-menu-profiles:hover .dropdown-box {
+        display: contents;
+    }
+
+    /* navbar */
+    
+    .navbar .navbar-nav.home-nav .nav-link {
+        padding: 15px 0px;
+    }
+    
+    
+    .navbar-collapse ul {
+        margin: 10px 0px;
+        text-align: center;
+    }
+
+    .navbar-collapse li.nav-item {
+        margin: 5px;
+    }
+
+    .navbar-collapse .navbar-nav .nav-link {
+        font-family: "Open sans";
+        font-size: 20px;
+        line-height: 15px;
+    }
+
+    .navbar-collapse .navbar-nav .nav-link.active {
+        color: #6255a5;
+        border: 0px;
+    }
+
+    nav {
+        height: auto;
+    }
+    
+    .navbar .log-in-out-btn{
+        text-align: center;
+        margin-bottom: 100%;
+    }
+    
+    
+    /* Home page */
+    .horizontal-heading h3 {
+        font-size: 24px;
+        line-height: 28px;
+    }
+    
+    #work .work-heading h3 {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    
+    #customer .testimonial .author .author-name-des h5{
+        font-size: 8px;
+    }
+
+    /* Profile Menu */
+    .dropdown-box a {
+        font-size: 15px;
+        padding: 5px 25px;
+    }
+
+    /* General Background Image */
+
+    .general-bg-img {
+        height: 200px;
+        margin-top: 66px;
+    }
+
+    /* User Profile page */
+
+    .general-bg-img h3 {
+        font-size: 40px
+    }
+
+    .info-components {
+        margin-top: 35px;
+    }
+
+    .btn-general.btn-submit-form {
+        margin-bottom: 35px;
+    }
+
+    /* Thankyou Pop modal */
+
+    #thank-you-modal {
+        margin-top: 50px;
+    }
+
+    /* user home page */
+
+    #home #background-img {
+        height: 500px;
+    }
+
+    #home-content-inner {
+        padding-top: 180px;
+    }
+
+    #home-content-inner #home-heading h1 {
+        font-size: 40px;
+        line-height: 45px;
+    }
+
+    #home-content-inner #home-text p {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    /* About */
+
+    .about-right p {
+        font-size: 15px;
+    }
+
+    .about-right p:first-child {
+        margin-bottom: 35px
+    }
+
+    /* Customer */
+
+    #customer .testimonial {
+        padding: 20px;
+        border-radius: 3px;
+    }
+
+    #customer .testimonial .author img {
+        width: 75px;
+        height: 75px;
+        margin-bottom: 15px;
+    }
+
+    #customer .testimonial .author .author-name-des h3 {
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 5px;
+    }
+
+    #customer .testimonial .author .author-name-des h5 {
+        font-size: 11px;
+        line-height: 23px;
+    }
+
+    /* Note derail page */
+
+    #note-detail .note-detail p {
+        margin-right: -40px
+    }
+
+    #note-detail #note-detail-right .title-value .ratings-wrapper {
+        margin-top: 0px;
+        margin-right: 0px;
+        padding-right: 0px;
+    }
+
+    #note-detail #note-detail-right .title-value .ratings-wrapper {
+        margin-left: -95px;
+        margin-top: -10px
+    }
+
+    .responsive-wrapper-padding-bottom-90pct {
+        padding-bottom: 150%;
+    }
+
+    /* search not page */
+
+    #notes-filter-wrapper .search-notes {
+        height: 100%
+    }
+
+    .flex-container {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+    .container .col-md-2.select-seatch {
+        margin: 5px;
+        text-align: center;
+        line-height: 12px;
+        padding: 2px 0px;
+        flex: 0 0 29.33%;
+        min-width: 29.33%;
+    }
+    
+    
+    
+    .select-seatch select {
+        flex: 0 0 33.33%;
+        min-width: 33.33%
+    }
+
+    .arrow-down {
+        position: absolute;
+        margin-left: -60px;
+        margin-top: 15px;
+    }
+
+    #search-results .note-title h3 {
+        min-height: 150px;
+    }
+
+    /* user dashboard */
+    .progress-note-btn input {
+        -webkit-transform: translateX(-120px);
+        transform: translateX(-120px);
+    }
+
+    .progress-note-btn button {
+        -webkit-transform: translateY(-40px);
+        transform: translateY(-40px);
+    }
+
+    .general-dashboard-head {
+        margin-bottom: -30px;
+    }
+
+    /* my download page, sold notes page, buyer request page, my rejected page */
+
+    /* general table in all above page */
+
+    .general-big-table .table thead th {
+        padding: 20px 3px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .general-big-table .table td {
+        padding: 20px 3px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .general-big-table .edit-action {
+        margin-right: 0px;
+        margin-bottom: 5px;
+    }
+
+    /* submenu for my down load page */
+    .my-download .dropdown-content {
+        margin-left: -170px;
+    }
+
+    /* submenu for sold note, rejected note and buyer request page  */
+    .sold-notes-menu .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        margin-left: -125px;
+        -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    /* font of submenu for sold note, rejected note and request page */
+    .sold-notes-menu .dropdown-content a {
+        font-family: "Open sans";
+        font-weight: 500;
+        font-size: 14px;
+        color: #333333;
+        padding: 15px 15px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a {
+        font-size: 14px;
+    }
+
+    /* faq page */
+    .faq-wrapper {
+        margin: 30px 0px;
+    }
+
+}
+
+
+/* Extra Small Devices (Landscape Phones & Portrait Tablets) */
+
+@media (max-width: 767px) {
+
+    /* navbar */
+    
+    a.user-icon-profile.nav-link.active {
+        display: flex;
+    }
+
+    .dropdown-menu-profiles:hover .dropdown-box {
+        display: contents;
+    }
+
+    .navbar-collapse ul {
+        margin: 10px 0px;
+    }
+
+    .navbar-collapse li.nav-item {
+        margin: 10px;
+    }
+
+    .navbar-collapse .navbar-nav .nav-link {
+        font-family: "Open sans";
+        font-size: 18px;
+        line-height: 15px;
+    }
+
+    .navbar .navbar-nav .nav-link.active {
+        padding-bottom: 0px;
+        border-bottom: 0px;
+    }
+    
+    .navbar .log-in-out-btn{
+        margin-bottom: 100%;
+        margin-left: 15px;
+    }
+
+    nav {
+        height: auto;
+    }
+
+    /* profile menu */
+
+    .dropdown-box {
+        width: 150px;
+        left: -130%;
+    }
+
+    .dropdown-box a {
+        font-size: 12px;
+        padding: 3px 20px;
+    }
+
+    /* General form (login, signup, forgot password, change password) */
+
+    .btn-general {
+        width: 375px;
+        height: 40px;
+        font-size: 15px;
+    }
+
+    #login-form-container {
+        margin-top: 10px;
+        padding: 20px;
+    }
+
+    #login-form-container h3 {
+        font-size: 25px;
+        margin-bottom: 5px;
+    }
+
+    .generic-form form p {
+        margin-bottom: 20px;
+    }
+
+    #login-form-container.generic-form form p {
+        margin-top: 0px;
+        padding-top: 0px;
+        font-size: 15px;
+    }
+
+    .generic-form form label {
+        font-size: 15px;
+        line-height: 15px;
+    }
+
+    .generic-form form input {
+        margin-top: 5px;
+        font-size: 8px;
+        line-height: 15px;
+    }
+
+    .generic-form form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .generic-form form .form-control {
+        width: 375px;
+        height: 40px;
+        font-size: 15px;
+    }
+
+    .generic-form form .form-group a {
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    .login-eye i {
+        font-size: 20px;
+    }
+
+    .generic-form form small {
+        font-size: 12px;
+    }
+
+    .generic-form form .input-group-prepend input {
+        width: 20px;
+        height: 20px;
+    }
+
+    .generic-form form .input-group-text {
+        margin-top: 10px;
+    }
+
+    #login-form-container p {
+        margin-top: 15px;
+        font-size: 15px;
+        line-height: 15px;
+    }
+    
+    /* forgot & change password Submit Button*/
+    #forgot-submit-btn,
+    #change-pw-submit-btn{
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    
+    /*  Email verification button  */
+    #email-v-btn {
+        margin-top: 25px;
+    }
+
+    /* general (profile pages and forms)*/
+
+    .general-bg-img {
+        height: 175px;
+        margin-top: 66px;
+    }
+
+    /* User Profile page */
+
+    .general-bg-img h3 {
+        font-size: 35px;
+        line-height: 38px
+    }
+
+    .info-components {
+        margin-top: 35px;
+    }
+
+    footer #text-area {
+        margin: 0;
+        padding-top: 0px;
+        text-align-last: center;
+        line-height: 32px;
+    }
+
+    footer #icon-area {
+        margin: 0;
+        padding-top: 0px;
+        text-align-last: center;
+    }
+
+    /* Thankyou Pop modal */
+
+    #thank-you-modal {
+        margin-top: 50px;
+        padding-bottom: 100px;
+    }
+
+    #thank-you-modal .modal-content .modal-body .title h3 {
+        font-size: 22px;
+        line-height: 22px;
+    }
+
+    #thank-you-modal .modal-content .modal-body .detail h3 {
+        font-size: 16px;
+        line-height: 18px;
+    }
+
+    #thank-you-modal .modal-content .modal-body .detail p {
+        font-size: 13px;
+        line-height: 16px;
+    }
+
+    /* user home page */
+
+    #home #background-img {
+        height: 470px;
+    }
+
+    #home-content-inner {
+        padding-top: 170px;
+    }
+
+    #home-content-inner #home-heading h1 {
+        font-size: 35px;
+        line-height: 35px;
+        text-align: center;
+    }
+
+    #home-content-inner #home-text p {
+        font-size: 14px;
+        line-height: 25px;
+        text-align: center;
+    }
+
+    #home-content-inner #home-btn {
+        text-align: center;
+    }
+
+    #home-content-inner #home-btn .btn-home {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    /* About */
+
+    #about-left .horizontal-heading {
+        text-align: center;
+        min-height: 100px;
+    }
+
+    .about-right p {
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .about-right p:first-child {
+        margin-bottom: 30px
+    }
+
+    /* Work */
+
+    #work .horizontal-heading {
+        min-height: 75px;
+    }
+
+    #work #work-left {
+        margin-bottom: 30px;
+    }
+
+    #work .work-logo {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 20px;
+    }
+
+    #work .work-heading h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    #work #work-left .work-button button {
+        height: 40px;
+    }
+
+    #work #work-right .work-button button {
+        height: 40px;
+    }
+
+    /* Customer */
+
+    #customer .testimonial {
+        padding: 20px;
+        border-radius: 3px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    #customer .testimonial .author img {
+        width: 75px;
+        height: 75px;
+        margin-bottom: 15px;
+    }
+
+    #customer .testimonial .author .author-name-des {
+        text-align: center;
+    }
+
+    #customer .testimonial .author .author-name-des h3 {
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 5px;
+    }
+
+    #customer .testimonial .author .author-name-des h5 {
+        font-size: 13px;
+        line-height: 25px;
+    }
+
+    #customer .first-row {
+        margin-bottom: 0px;
+    }
+
+    /* note detail page */
+
+    #note-detail .note-img img {
+        margin-bottom: 10px;
+    }
+
+    .notes-horizontal-heading h3 {
+        text-align: center;
+        font-size: 35px;
+        margin: 45px 0;
+    }
+
+    .horizontal-heading-sm h3 {
+        text-align: center;
+        font-size: 25px;
+    }
+
+    #note-detail .note-title p {
+        font-size: 20px;
+    }
+
+    #note-detail .note-detail p {
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    #note-detail .download-btn button {
+        height: 35px;
+        margin-bottom: 15px;
+    }
+
+    #note-preview #testmonials {
+        text-align: center
+    }
+
+    #note-preview #testmonials .customer-img img {
+        height: 75px;
+        width: 75px;
+        margin-bottom: 10px;
+    }
+
+    #note-preview #testmonials .customer-nam-des {
+        margin-left: 0px;
+    }
+
+    #note-preview #testmonials .customer-nam-des h3 {
+        font-size: 18px;
+    }
+
+    #note-preview #testmonials .customer-nam-des .row {
+        margin: 5px 0px 0px 0px;
+    }
+
+    #note-preview #testmonials .customer-nam-des .row .ratings-wrapper {
+        margin-left: 175px;
+    }
+
+    #note-preview #testmonials .customer-nam-des p {
+        font-size: 15px;
+    }
+
+    #note-preview-right {
+        margin-top: 15px;
+    }
+
+    .responsive-wrapper-padding-bottom-90pct {
+        padding-bottom: 100%;
+    }
+
+    /* search not page */
+
+    #notes-filter-wrapper .search-notes {
+        height: 100%;
+    }
+
+    .flex-container {
+        display: inline;
+    }
+
+    #search-results .note-title h3 {
+        margin: 10px;
+    }
+
+    #search-results .note-details {
+        margin: 0 10px;
+    }
+
+    #search-results .note-details p {
+        font-size: 13px;
+        line-height: 10px;
+    }
+
+    #search-results .note-details p span {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    #search-results .move-top-one {
+        margin-top: -485px
+    }
+
+    #search-results .move-top-two {
+        margin-top: -975px
+    }
+
+    #search-results .move-top-three {
+        -webkit-transform: translateX(270px);
+        transform: translateX(270px);
+        margin-top: -945px;
+    }
+
+    #search-results .margin-top {
+        margin-top: 30px
+    }
+
+    #search-results .note-title h3 {
+        min-height: 100px;
+    }
+
+    /* user dash board */
+    .user-earning-stats .flex-container {
+        display: inline;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .user-earning-stats .flex-container > div {
+        border: 1px solid #d1d1d1;
+        margin: 0px 0px 0px 0px;
+        text-align: center;
+        border-radius: 2px;
+        padding: 10px;
+    }
+
+    .user-earning-stats #num-of-notes {
+        margin-left: -0px;
+        border-right: 1px solid #d1d1d1;
+    }
+
+    .user-earning-stats #money-ern {
+        border-left: 1px solid #d1d1d1;
+        margin-left: 0px;
+    }
+
+    .user-earning-stats #requests {
+        margin-right: 0px;
+    }
+
+    .user-earning-stats #dash-title {
+        margin-left: 0px;
+        padding-right: 0px;
+    }
+
+    .general-dashboard-head .horizontal-heading-sm {
+        margin-bottom: 15px;
+    }
+
+    /* my download page, sold notes page, buyer request page, my rejected page */
+
+    /* general table in all above page */
+
+    .general-top-bar .horizontal-heading h3 {
+        text-align: center;
+        font-size: 25px;
+        margin-left: 0px;
+    }
+
+    .general-top-bar .progress-note-btn {
+        text-align: center;
+        margin-right: 0px;
+        margin-top: 0px;
+    }
+
+    .general-top-bar .progress-note-btn .search-enter-progress {
+        width: 350px;
+    }
+
+    .progress-table.general-big-table {
+        border: none;
+    }
+
+    .general-big-table .table {
+        border: none;
+        border: 1px solid #d1d1d1;
+    }
+
+    .faq-wrapper {
+        margin: 30px 0px;
+    }
+
+}
+
+/* Extra Small Devices (Portrait Phones & Smaller Devices) */
+
+@media (max-width: 575.5px) {
+
+    /* forgot & change password submit button*/
+    #forgot-submit-btn,
+    #change-pw-submit-btn{
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }   
+    
+    /* navbar */
+
+    .navbar-collapse ul {
+        margin: 10px 0px;
+    }
+
+    .navbar-collapse .navbar-nav .nav-link {
+        font-family: "Open sans";
+        font-size: 18px;
+    }
+
+    .dropdown-box {
+        width: 150px;
+        left: -130%;
+    }
+
+    .dropdown-box a {
+        font-size: 12px;
+        padding: 3px 20px;
+    }
+    
+    /* User Profile page */
+    #customer .testimonial .detail{
+        margin-top: 15px
+    }
+    
+
+    /* Note Detail page */
+
+    #note-detail #note-detail-right {
+        margin-top: 15px;
+    }
+
+    #note-detail #note-detail-right .title-value .ratings-wrapper {
+        margin-top: -12px;
+        margin-left: 350px;
+        padding-right: 0px;
+    }
+
+    /* search not page */
+
+    #search-results .note-title h3 {
+        margin: 10px;
+    }
+
+    #search-results .note-details {
+        margin: 0 10px;
+    }
+
+    #search-results .note-details p {
+        font-size: 15px;
+        line-height: 10px;
+    }
+
+    #search-results .note-details p span {
+        font-size: 15px;
+        line-height: 15px;
+    }
+
+    #search-results .move-top-one,
+    #search-results .move-top-two {
+        margin-top: 0px
+    }
+
+    #search-results .move-top-three {
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+        margin-top: 0px;
+    }
+
+    #search-results .margin-top-two {
+        margin-top: 30px
+    }
+
+    #search-results .note-title h3 {
+        min-height: auto;
+    }
+
+    /* user dash board */
+
+    .dashboard-head button {
+        -webkit-transform: translateY(-40px);
+        transform: translateY(-40px);
+    }
+
+    .dashboard-head {
+        margin-bottom: -35px;
+    }
+
+    .progress-table {
+        border: none;
+    }
+
+    .table {
+        border: 1px solid #d1d1d1;
+    }
+
+    .table td a img {
+        height: 20px;
+        width: 20px;
+    }
+
+    /* my download page, sold notes page, buyer request page, my rejected page */
+
+    /* general table in all above page */
+
+    .general-top-bar .horizontal-heading h3 {
+        text-align: center;
+        font-size: 25px;
+        margin-left: 0px;
+    }
+
+    .general-top-bar .progress-note-btn {
+        text-align: center;
+        margin-right: 0px;
+        margin-top: 0px;
+    }
+
+    .general-top-bar .progress-note-btn .search-enter-progress {
+        width: 390px;
+    }
+
+    .progress-table.general-big-table {
+        border: none;
+    }
+
+    .general-big-table .table {
+        margin-left: 0px;
+        border: none;
+        border: 1px solid #d1d1d1;
+    }
+
+    #add-notes-form .margin-top {
+        margin-top: 15px;
+    }
+
+    .faq-toggle-key {
+        font-size: 15px;
+    }
+
+    .faq-wrapper {
+        margin: 20px 0px;
+    }
+
+}
+
+
+/* Extra Small Devices (Portrait Phones & Smaller Devices) */
+
+@media (max-width: 480px) {
+
+    /* navbar */
+
+    /* navbar logo */
+    .navbar .navbar-brand img {
+        width: 180px;
+    }
+
+    /* General */
+
+    .btn-general {
+        width: 325px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    #login-form-container {
+        margin-top: 10px;
+        padding: 10px;
+    }
+
+    #login-form-container h3 {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .generic-form form p {
+        margin-bottom: 15px;
+    }
+
+    #login-form-container.generic-form form p {
+        margin-top: 0px;
+        padding-top: 0px;
+        font-size: 12px;
+    }
+
+    .generic-form form label {
+        font-size: 12px;
+        line-height: 12px;
+    }
+
+    .generic-form form input {
+        margin-top: 3px;
+        font-size: 8px;
+        line-height: 10px;
+    }
+
+    .generic-form form .form-group {
+        margin-bottom: 10px;
+    }
+
+    .generic-form form .form-control {
+        width: 325px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .generic-form form .form-group a {
+        font-size: 12px;
+        line-height: 25px;
+    }
+
+    .login-eye i {
+        font-size: 20px;
+        top: 4px;
+    }
+
+    .generic-form form small {
+        font-size: 10px;
+    }
+
+    .generic-form form .input-group-prepend input {
+        width: 15px;
+        height: 15px;
+    }
+
+    .generic-form form .input-group-text {
+        margin-top: 5px;
+    }
+
+    #login-form-container p {
+        margin-top: 10px;
+        font-size: 12px;
+        line-height: 12px;
+    }
+    
+    /* forgot & change password Submit Button*/
+    #forgot-submit-btn,
+    #change-pw-submit-btn{
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }    
+    
+    /* general (profile pages and forms)*/
+
+    .general-bg-img {
+        height: 170px;
+        margin-top: 56px;
+    }
+
+    /* User Profile page */
+
+    .general-bg-img h3 {
+        font-size: 32px;
+        line-height: 35px
+    }
+
+    .last-row-small {
+        margin-bottom: 15px;
+    }
+
+    .phone-number-input {
+        margin-top: 10px;
+    }
+
+    /* Thankyou Pop modal */
+
+    #thank-you-modal {
+        margin-top: 40px;
+        padding-bottom: 100px;
+    }
+
+    #thank-you-modal .modal-content .modal-body .title h3 {
+        font-size: 25px;
+        line-height: 22px;
+    }
+
+    #thank-you-modal .modal-content .modal-body .detail h3 {
+        font-size: 18px;
+        line-height: 18px;
+    }
+
+    #thank-you-modal .modal-content .modal-body .detail p {
+        font-size: 15px;
+        line-height: 16px;
+    }
+
+    /* user home page */
+
+    #home #background-img {
+        height: 470px;
+    }
+
+    #home-content-inner {
+        padding-top: 170px;
+    }
+
+    #home-content-inner #home-heading h1 {
+        font-size: 33px;
+        line-height: 33px;
+    }
+
+    #home-content-inner #home-btn .btn-home {
+        font-size: 16px;
+    }
+
+    /* About */
+
+    .horizontal-heading h3 {
+        font-size: 30px;
+    }
+
+    .about-right p:first-child {
+        margin-bottom: 20px
+    }
+
+    /* Work */
+
+    #work .horizontal-heading {
+        min-height: 60px;
+    }
+
+    /* Customer */
+
+    #customer .testimonial {
+        text-align: center;
+        height: auto;
+    }
+
+    #customer .testimonial .author .author-name-des {
+        text-align: center;
+    }
+
+    #customer .testimonial .author img {
+        margin-bottom: 5px;
+    }
+
+    #customer .testimonial .author .author-name-des {
+        margin-top: 0px;
+    }
+
+    /* note detail page */
+
+    #note-detail #note-detail-right {
+        margin-top: 15px;
+    }
+
+    #note-detail #note-detail-right .title-value .ratings-wrapper {
+        margin-top: -12px;
+        margin-left: 250px;
+        padding-right: 0px;
+    }
+
+    #note-preview #testmonials .customer-nam-des .row .ratings-wrapper {
+        margin-left: 135px;
+    }
+
+    /* user dashboard */
+    .search-enter-progress {
+        width: 160px
+    }
+
+    /* my download page, sold notes page, buyer request page, my rejected page */
+
+    /* general table in all above page */
+
+    .general-top-bar .horizontal-heading h3 {
+        text-align: center;
+        font-size: 22px;
+        margin-left: 0px;
+    }
+
+    .general-top-bar .progress-note-btn {
+        text-align: center;
+        margin-right: 0px;
+        margin-top: 0px;
+    }
+
+    .general-top-bar .progress-note-btn button {
+        height: 30px;
+    }
+
+    .general-top-bar .progress-note-btn .search-enter-progress {
+        width: 150px;
+        height: 30px;
+    }
+
+    .general-big-table .table {
+        margin-left: 0px;
+    }
+
+    .general-big-table .table td a img {
+        height: 12px;
+        width: 12px;
+    }
+
+    /* submenu for my down load page */
+    .my-download .dropdown-content {
+        margin-left: -131px;
+    }
+
+    /* submenu for sold note, rejected note and buyer request page  */
+    .sold-notes-menu .dropdown-content {
+        margin-left: -112px;
+    }
+
+    /* font of submenu for sold note, rejected note and request page */
+    .sold-notes-menu .dropdown-content a {
+        font-size: 12px;
+    }
+
+    .dropdown-content a {
+        font-size: 10px;
+    }
+
+    .horizontal-heading-sm h3 {
+        font-size: 23px;
+    }
+
+    .faq-toggle-key {
+        font-size: 14px;
+    }
+
+    /* email verification page */
+
+    #email-v-form form h3 {
+        font-size: 23px;
+    }
+
+    #email-v-form img {
+        width: 200px;
+        margin-bottom: 30px;
+    }
+
+    #email-v-form #receiver-user-name {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    #email-v-form #p1,
+    #email-v-form #p2 {
+        font-size: 14px;
+        line-height: 15px
+    }
+
+    #email-v-form .btn-general {
+        width: 100%;
+    }
+    
+}
+
+/* Extra Small Devices (Portrait Phones & Smaller Devices) */
+
+@media (max-width: 320px) {
+
+    /* General */
+
+    .btn-general {
+        width: 270px;
+        height: 25px;
+        font-size: 11px;
+    }
+
+    #login-form-container {
+        margin-top: 10px;
+        padding: 10px;
+    }
+
+    #login-form-container h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .generic-form form p {
+        margin-bottom: 12px;
+    }
+
+    #login-form-container.generic-form form p {
+        font-size: 11px;
+    }
+
+    .generic-form form label {
+        font-size: 11px;
+        line-height: 11px;
+    }
+
+    .generic-form form input {
+        font-size: 11px;
+        line-height: 10px;
+    }
+
+    .generic-form form .form-group {
+        margin-bottom: 10px;
+    }
+
+    .generic-form form .form-control {
+        width: 270px;
+        height: 25px;
+        font-size: 11px;
+    }
+
+    .generic-form form .form-group a {
+        font-size: 11px;
+        line-height: 27px;
+    }
+
+    .login-eye i {
+        font-size: 15px;
+        top: 4px;
+    }
+
+    .generic-form form small {
+        font-size: 10px;
+    }
+
+    .generic-form form .input-group-prepend input {
+        width: 14px;
+        height: 14px;
+    }
+
+    .generic-form form .input-group-text {
+        margin-top: 0px;
+    }
+
+    #login-form-container p {
+        margin-top: 8px;
+        font-size: 11px;
+        line-height: 11px;
+    }
+
+    /* forgot & change password Submit Button*/
+    #forgot-submit-btn,
+    #change-pw-submit-btn{
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }    
+
+    /* general (profile pages and forms)*/
+
+    .general-bg-img {
+        height: 170px;
+        margin-top: 58px;
+    }
+
+    /* User Profile page */
+
+    .general-bg-img h3 {
+        font-size: 25px
+    }
+
+    .info-components h3 {
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+    /* Thankyou Pop modal */
+
+    #thank-you-modal {
+        margin-top: 40px;
+        padding-bottom: 100px;
+    }
+
+    #thank-you-modal .modal-content .modal-body .title h3 {
+        font-size: 20px;
+        line-height: 22px;
+    }
+
+    #thank-you-modal .modal-content .modal-body .detail h3 {
+        font-size: 15px;
+        line-height: 18px;
+    }
+
+    #thank-you-modal .modal-content .modal-body .detail p {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    /* user home page */
+
+    #home-content-inner #home-heading h1 {
+        font-size: 30px;
+        line-height: 30px;
+    }
+
+    #home-content-inner #home-btn .btn-home {
+        font-size: 15px;
+    }
+
+    /* About */
+
+    .horizontal-heading h3 {
+        font-size: 25px;
+    }
+
+    /* Customer */
+
+    #customer .testimonial {
+        height: auto;
+    }
+
+    #customer .testimonial .author .author-name-des {
+        text-align: center;
+    }
+
+    /* note detail page */
+
+    #note-detail #note-detail-right .title-value .ratings-wrapper {
+        margin-top: -12px;
+        margin-left: 97px;
+    }
+
+    #note-preview #testmonials .customer-nam-des .row .ratings-wrapper {
+        margin-left: 45px;
+    }
+
+    /* user dashboard */
+    .search-enter-progress {
+        width: 160px
+    }
+
+    /* my download page, sold notes page, buyer request page, my rejected page */
+
+    /* general table in all above page */
+
+    .general-big-table .table {
+        margin-left: 0px;
+    }
+
+}

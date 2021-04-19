@@ -1,0 +1,150 @@
+﻿@model NotesMarketplace.Models.AddSystemConfiguration
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="profile-form">
+    <!-- Form Area -->
+    <div id="add-detial-form" class="profile-form">
+        @using (Html.BeginForm("ManageSystemConfiguration","Admin",FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(x=>x.ID)
+            <div class="container">
+                <!-- Basic Profile Detail -->
+                <div id="basic-profile-details" class="detail-content-box">
+                    <div class="row">
+                        <div class="horizontal-heading-sm col-md-12 col-sm-12 col-xs-12">
+                            <h3>Manage System Configuration</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Support Email Address *</label>
+                                @Html.TextBoxFor(x => x.SupportEmailAddress, new { @class = "form-control", @placeholder = "Enter Your Email" })
+                                @Html.ValidationMessageFor(model => model.SupportEmailAddress, "", new { @class = "text-danger error-message" })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Support Email Password *</label>
+                                <div class="password-container">@Html.TextBoxFor(x => x.EmailPassword, new { id = "support-password", @class = "form-control", @placeholder = "Enter Your Password", @type = "password" })
+                                    <div class="login-eye">
+                                        <i class="fa fa-eye-slash toggle-password" toggle="#support-password"></i>
+                                    </div>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.EmailPassword, "", new { @class = "text-danger error-message" })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Support Phone Number *</label>
+                                @Html.TextBoxFor(x => x.SupportPhoneNumber, new { @class = "form-control", @placeholder = "Enter phone number" })
+                                @Html.ValidationMessageFor(model => model.SupportPhoneNumber, "", new { @class = "text-danger error-message" })
+                                @*<input type="text" class="form-control" placeholder="Enter phone number">*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Email Address(es)(for various events system will send notifications to this users) *</label>
+                                @Html.TextBoxFor(x => x.EmailAddress, new { @class = "form-control", @placeholder = "Enter Your Email address" })
+                                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger error-message" })
+                                @*<input type="email" class="form-control" placeholder="Enter Your Email address">*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Facebook URL *</label>
+                                @Html.TextBoxFor(x => x.FacebookURL, new { @class = "form-control", @placeholder = "Enter Facebook URL" })
+                                @Html.ValidationMessageFor(model => model.FacebookURL, "", new { @class = "text-danger error-message" })
+                                @*<input type="text" class="form-control" placeholder="Enter Facebook URL">*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Twitter URL *</label>
+                                @Html.TextBoxFor(x => x.TwitterURL, new { @class = "form-control", @placeholder = "Enter Twitter URL" })
+                                @Html.ValidationMessageFor(model => model.TwitterURL, "", new { @class = "text-danger error-message" })
+                                @*<input type="text" class="form-control" placeholder="Enter Twitter URL">*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Linkedin URL *</label>
+                                @Html.TextBoxFor(x => x.LinkedinURL, new { @class = "form-control", @placeholder = "Enter Linkedin URL" })
+                                @Html.ValidationMessageFor(model => model.LinkedinURL, "", new { @class = "text-danger error-message" })
+                                @*<input type="text" class="form-control" placeholder="Enter Linkedin URL">*@
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group profile-picture-input">
+                                <label>Default image for notes (if seller do not upload)</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="DefaultImageForNotes" accept="image/*" onchange="fileValidation();" name="DefaultImageForNotes">
+                                    <label class="custom-file-label" for="DefaultImageForNotes">
+                                        <div>
+                                            <div class="upload-2"><img src="/Content/Admin/images/User-Profile/upload.png" alt=""></div>
+                                            <div>
+                                                upload
+                                                a image
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <span id="DefaultImageForNotes-error" class="text-danger"></span>
+                                    @Html.ValidationMessageFor(model => model.DefaultImageForNotes, "", new { @class = "text-danger error-message" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group profile-picture-input last-row">
+                                <label>Default Profile Picture (if seller do not upload)</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="DefaultProfilePicture" accept="image/*" onchange="fileImgValidation();" name="DefaultProfilePicture">
+                                    <label class="custom-file-label" for="DefaultProfilePicture">
+                                        <div>
+                                            <div class="upload-2"><img src="/Content/Admin/images/User-Profile/upload.png" alt=""></div>
+                                            <div>
+                                                upload
+                                                a image
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <span id="DefaultProfilePicture-error" class="text-danger"></span>
+                                    @Html.ValidationMessageFor(model => model.DefaultProfilePicture, "", new { @class = "text-danger error-message" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button type="submit" class="btn-general btn-submit-form">submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>

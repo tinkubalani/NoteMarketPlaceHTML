@@ -1,0 +1,213 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Member Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="member-detail">
+    <div class="container">
+
+        <div class="row">
+            <div class="horizontal-heading col-md-12">
+                <h3>Member Details</h3>
+            </div>
+        </div>
+
+        <!-- top details -->
+        <div class="row top-details">
+            <!-- member details left -->
+            <div class="col-md-6 member-detail-left">
+                <div class="row">
+                    <div class="col-md-3">
+                        <!-- member image -->
+                        <div class="member-image">
+                            <img src="@ViewBag.userProfileObj.ProfilePicture" alt="member-image">
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <!-- member biodata -->
+                        <div class="member-biodata">
+                            <div class="d-flex">
+                                <span class="col-md-6 title">First Name:</span>
+                                <div class="col-md-6 title-velue">@ViewBag.userObj.FirstName</div>
+                            </div>
+                            <div class="d-flex">
+                                <span class="col-md-6 title">Last Name:</span>
+                                <div class="col-md-6 title-velue">@ViewBag.userObj.LastName</div>
+                            </div>
+                            <div class="d-flex">
+                                <span class="col-md-6 title">Email:</span>
+                                <div class="col-md-6 title-velue">@ViewBag.userObj.EmailID</div>
+                            </div>
+                            <div class="d-flex">
+                                <span class="col-md-6 title">DOB</span>
+                                <div class="col-md-6 title-velue">@ViewBag.userProfileObj.DOB.ToString("dd-MM-yyyy")</div>
+                            </div>
+                            <div class="d-flex">
+                                <span class="col-md-6 title">Phone Number:</span>
+                                <div class="col-md-6 title-velue">+@ViewBag.userProfileObj.PhoneNumberCountryCode @ViewBag.userProfileObj.PhoneNumber</div>
+                            </div>
+                            <div class="d-flex">
+                                <span class="col-md-6 title">College/University:</span>
+                                <div class="col-md-6 title-velue">
+                                    @if (@ViewBag.userProfileObj.College != null)
+                                    {
+                                        if (@ViewBag.userProfileObj.University != null)
+                                        {
+                                            @ViewBag.userProfileObj.College<text> / </text>@ViewBag.userProfileObj.University;
+                                        }
+                                        else
+                                        {
+                                            @ViewBag.userProfileObj.College<text> / N/A</text>;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (@ViewBag.userProfileObj.University != null)
+                                        {
+                                            <text>N/A / </text>@ViewBag.userProfileObj.University;
+                                        }
+                                        else
+                                        {
+                                            <text>N/A</text>;
+                                        }
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- member details right -->
+            <div class="col-md-6 member-detail-right">
+                <div class="d-flex">
+                    <span class="col-md-6 title">Address 1:</span>
+                    <div class="col-md-6 title-velue">@ViewBag.userProfileObj.AddressLine1</div>
+                </div>
+                <div class="d-flex">
+                    <span class="col-md-6 title">Address 2:</span>
+                    <div class="col-md-6 title-velue">@ViewBag.userProfileObj.AddressLine2</div>
+                </div>
+                <div class="d-flex">
+                    <span class="col-md-6 title">City:</span>
+                    <div class="col-md-6 title-velue">@ViewBag.userProfileObj.City</div>
+                </div>
+                <div class="d-flex">
+                    <span class="col-md-6 title">State:</span>
+                    <div class="col-md-6 title-velue">@ViewBag.userProfileObj.State</div>
+                </div>
+                <div class="d-flex">
+                    <span class="col-md-6 title">Country:</span>
+                    <div class="col-md-6 title-velue">@ViewBag.userProfileObj.Country</div>
+                </div>
+                <div class="d-flex">
+                    <span class="col-md-6 title">Zip Code:</span>
+                    <div class="col-md-6 title-velue">@ViewBag.userProfileObj.ZipCode</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- table area -->
+        <div class="row">
+            <div class="col-md-6 horizontal-heading-sm">
+                <h3>Notes</h3>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 mt-4 mb-0">
+                <div class="progress-note-btn">
+                    @*@using (Html.BeginForm("MemberDetail", "AdminMember", FormMethod.Get, new { id= @ViewBag.userObj }))
+                    {
+                        <input type="text" name="SearchPublished" class="search-enter-progress" placeholder="Search" title="Type
+                                        in a name" />
+                        <a href=""><button type="submit">Search</button></a>
+                    }*@
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-table general-big-table" style="overflow-x: auto;">
+            @{
+                    IPagedList <NotesMarketplace.Models.AllNotesOfMember> AllNotes = ViewBag.AllNotes;
+            }
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">sr no.</th>
+                        <th scope="col" class="text-center">@Html.ActionLink("note title", "MemberDetail", new { sortBy = ViewBag.SortTitleParameter })</th>
+                        <th scope="col" class="text-center">@Html.ActionLink("category", "MemberDetail", new { sortBy = ViewBag.SortCategoryParameter })</th>
+                        <th scope="col" class="text-center">@Html.ActionLink("status", "MemberDetail", new { sortBy = ViewBag.SortStatusParameter })</th>
+                        <th scope="col" class="text-center">downloaded notes</th>
+                        <th scope="col" class="text-center">total earnings</th>
+                        <th scope="col" class="text-center">@Html.ActionLink("date added", "MemberDetail", new { sortBy = ViewBag.SortDateAddedParameter })</th>
+                        <th scope="col" class="text-center">@Html.ActionLink("published date", "MemberDetail", new { sortBy = ViewBag.SortPublishedDateParameter })</th>
+                        <th scope="col" class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var Counter = 0;
+
+
+                        if (AllNotes.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="9" class="text-center">No Any Record Found</td>
+                            </tr>
+                        }
+
+                        foreach (var note in AllNotes)
+                        {
+                            <tr>
+                                <td>@(Counter + ((AllNotes.PageNumber - 1) * AllNotes.PageSize) + 1)</td>
+                                <td class="title-col"><a href="/Admin/NoteDetail/@note.SellerNotes.ID">@note.SellerNotes.Title</a></td>
+                                <td>@note.NoteCategories.Name</td>
+                                <td>@note.ReferenceDatas.Value</td>
+                                <td class="title-col text-center"><a href="/Admin/DownloadedNotes?Search=@note.SellerNotes.Title">@note.SellerNotes.Downloads.Where(x=>x.NoteID== @note.SellerNotes.ID && x.AttachmentPath != null && x.IsSellerHasAllowedDownload == true).Count()</a></td>
+                                <td class="text-center">$@note.SellerNotes.Downloads.Where(x=>x.NoteID== @note.SellerNotes.ID && x.AttachmentPath != null && x.IsSellerHasAllowedDownload == true).Select(x=>x.PurchasedPrice).Sum()</td>
+                                <td>@note.SellerNotes.CreatedDate.Value.ToString("dd-MM-yyyy, HH:mm")</td>
+                                <td>
+                                    @if (note.ReferenceDatas.Value == "Published")
+                                    {
+                                        @note.SellerNotes.PubilshedDate.Value.ToString("dd-MM-yyyy, HH:mm")
+                                    }
+                                    else
+                                    {
+                                        <text>N/A</text>
+                                    }
+                                </td>
+                                <td>
+                                <div class="dropdown admin-notes-menu">
+                                    <a role="button" class="dropbtn"><img src="/Content/Admin/images/Dashboard/three-dot.png" alt="delete-icon" /></a>
+                                    <div class="dropdown-content">
+                                        <a href="/Admin/DownloadAttechedFile/@note.SellerNotes.ID">Download Notes</a>
+                                    </div>
+                                </div>
+                                </td>
+                        </tr>
+
+                        { Counter++; }
+
+                    }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-section">
+            <div class="pagination-notes">
+                <div class="pagination-number">
+                    @Html.PagedListPager(AllNotes, Page => Url.Action("MemberDetail", new
+                   {
+                       Page,
+                       sortBy = Request.QueryString["sortBy"]
+                   }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 5 })
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,116 @@
+﻿@model NotesMarketplace.Models.AdminProfile
+
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="profile-form">
+    <!-- Form Area -->
+    <div id="add-detial-form" class="profile-form">
+        @using (Html.BeginForm("MyProfile", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="container">
+                <!-- Basic Profile Detail -->
+                <div id="basic-profile-details" class="detail-content-box">
+                    <div class="row">
+                        <div class="horizontal-heading-sm col-md-12 col-sm-12 col-xs-12">
+                            <h3>My Profile</h3>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">First Name *</label>
+                                @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @placeholder = "Enter Your First Name" })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger error-message" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Last Name *</label>
+                                @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", @placeholder = "Enter Your Last Name" })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger error-message" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email *</label>
+                                @Html.TextBoxFor(x => x.EmailID, new { @class = "form-control", @placeholder = "Enter Your EmailId", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger ErrorMessage" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="dateOfBirth">Secondary Email</label>
+                                @Html.TextBoxFor(x => x.SecondaryEmail, new { @class = "form-control", @placeholder = "Enter Your Secondary Email" })
+                                @Html.ValidationMessageFor(model => model.SecondaryEmail, "", new { @class = "text-danger ErrorMessage" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3">
+                                        @Html.DropDownList("PhoneNumberCountryCode", null, htmlAttributes: new { @class = "form-control", name = "PhoneNumberCountryCode" })
+                                        @Html.ValidationMessageFor(model => model.PhoneNumberCountryCode, "", new { @class = "text-danger ErrorMessage" })
+                                    </div>
+                                    <div class="col-md-9 col-sm-9">
+                                        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @placeholder = "Enter Your Phone Number" })
+                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger ErrorMessage" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group profile-picture-input last-row">
+                                <label>Profile Picture</label>
+                                @if (@ViewBag.ProfilePicture != null)
+                                {
+                                    <a href="/Admin/DownloadPicture/@Model.ID"> Uploaded Picture </a>
+                                }
+                                @if (@TempData["Message"] != null)
+                                {
+                                    <p class="text-danger">@TempData["Message"]</p>
+                                }
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile2" name="ProfilePicture" accept="image/*">
+                                    <label class="custom-file-label" for="customFile2">
+                                        <div>
+                                            <div class="upload-2"><img src="/Content/Admin/images/User-Profile/upload.png" alt=""></div>
+                                            <div>
+                                                upload
+                                                a image
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button type="submit" class="btn-general btn-submit-form">submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

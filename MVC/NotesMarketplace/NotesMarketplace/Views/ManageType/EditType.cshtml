@@ -1,0 +1,56 @@
+﻿@model NotesMarketplace.Models.AddType
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="profile-form">
+    <!-- Form Area -->
+    <div id="add-detial-form" class="profile-form">
+        <div class="container">
+            <!-- Basic Profile Detail -->
+            <div id="basic-profile-details" class="detail-content-box">
+                @using (Html.BeginForm("EditType", "Admin", FormMethod.Post))
+                {
+                    <input type="hidden" name="TypeID" value="@Model.TypeID">
+                    <div class="row">
+                        <div class="horizontal-heading-sm col-md-12 col-sm-12 col-xs-12">
+                            <h3>Add Category</h3>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Category Name *</label>
+                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Enter Category" })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger error-message" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Description *</label>
+                                @Html.TextAreaFor(x => x.Description, new { @class = "form-control", rows = "10", @placeholder = "Enter your description" })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger error-message  " })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button type="submit" class="btn-general btn-submit-form">submit</button>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

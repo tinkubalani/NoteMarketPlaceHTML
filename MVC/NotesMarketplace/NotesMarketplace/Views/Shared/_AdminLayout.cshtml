@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no">
+
+    <!-- Title -->
+    <title>Notes Marketplace</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Content/Admin/images/favicon/favicon.ico">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="~/Content/Admin/css/font-awesome/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/bootstrap/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/style.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/responsive.css">
+
+    <script>
+        function fileValidation() {
+            var fileInput =
+                document.getElementById('DefaultImageForNotes');
+            var filePath = fileInput.value;
+            // Allowing file type
+            var allowedExtensions =
+                /(\.jpg)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                fileInput.value = '';
+                document.getElementById('DefaultImageForNotes-error').innerHTML = "Select .jpg file only";
+                document.getElementById('DefaultImageForNotes').focus;
+                return false;
+            }
+        }
+        function fileImgValidation() {
+            var fileInput =
+                document.getElementById('DefaultProfilePicture');
+            var filePath = fileInput.value;
+            // Allowing file type
+            var allowedExtensions =
+                /(\.jpg)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                fileInput.value = '';
+                document.getElementById('DefaultProfilePicture-error').innerHTML = "Select .jpg file only";
+                document.getElementById('DefaultProfilePicture').focus;
+                return false;
+            }
+        }
+        function NoteFunction() {
+            document.getElementById("AllSeachNote").submit();
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+
+        <!-- Navigation Panel-->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+
+            <div class="container">
+
+                <!-- Navbar Top Logo -->
+                <a class="navbar-brand" href="/Admin/Index">
+                    <img src="~/Content/Admin/images/homepage/logo.png" alt="logo">
+                </a>
+
+                <!-- Mobile Menu Button-->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-menu-navbar" aria-controls="mobile-menu-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span id=mobile-menu-button>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mobile-menu-navbar">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/Admin/Index">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown-navbar">
+                                <a class="dropbtn-navbar nav-link" href="#">Notes<span><i class="fa fa-angle-down"></i></span></a>
+                                <div class="dropdown-content-navbar">
+                                    <a href="/Admin/NotesUnderReview">Notes Under Review</a>
+                                    <a href="/Admin/PublishedNotes">Published Notes</a>
+                                    <a href="/Admin/DownloadedNotes">Downloaded Notes</a>
+                                    <a href="/Admin/RejectedNote">Rejected Notes</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/AdminMember/MemberList">Members</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown-navbar">
+                                <a class="dropbtn-navbar nav-link" href="#">Reports<span><i class="fa fa-angle-down"></i></span></a>
+                                <div class="dropdown-content-navbar">
+                                    <a href="/Admin/SpamReports">Spam Reports</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown-navbar">
+                                <a class="dropbtn-navbar nav-link" href="#">Settings<span><i class="fa fa-angle-down"></i></span></a>
+                                <div class="dropdown-content-navbar">
+
+                                    @if (User.IsInRole("SuperAdmin"))
+                                    {
+                                        <a href="/Admin/ManageSystemConfiguration">Manage System Configuration</a>
+                                        <a href="/Admin/Administrators">Manage Administrator</a>
+                                    }
+
+                                    <a href="/Admin/ManageCategory">Manage Category</a>
+                                    <a href="/Admin/ManageType">Manage Type</a>
+                                    <a href="/Admin/Countries">Manage Countries</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown-profile">
+                                <a class="dropbtn-profile nav-link" href="#"><img src="@TempData["ProfilePicture"]" alt="customer-image"></a>
+                                @{
+                                    TempData.Keep("ProfilePicture");
+                                }
+                                <div class="dropdown-content-profile">
+                                    <a href="/Admin/MyProfile">Update Profile</a>
+                                    <a href="/Admin/ChangePassword">Change Password</a>
+                                    <a onclick="return confirm('Are you sure, you want to logout?')" href="/Account/Logout">logout</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="log-in-out-btn">
+                        <button><a onclick="return confirm('Are you sure, you want to logout?')" href="/Account/Logout">Logout</a></button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Navigation Section Ends -->
+
+    </header>
+    <!-- Header Section Ends -->
+
+    @RenderBody()
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div id="text-area" class="col-md-8 col-sm-8">
+                    <p>Version : 1.1.24</p>
+                </div>
+                <div id="icon-area" class="col-md-4 col-sm-4">
+                    <p>Copyright <i class="fa fa-copyright"></i> TatvaSoft All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Jquery -->
+    <script src="~/Scripts/js/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/Scripts/js/script.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketplace.Models.User>
+
+@{
+    IEnumerable<NotesMarketplace.Models.UserProfile> adminnumber = ViewBag.UsersProfiles;
+}
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="manage-administrator">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                @if (TempData["success"] != null)
+                {
+                    <div class="mt-2 alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>@TempData["success"] !</strong> @TempData["message"]
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+            </div>
+            <div class="horizontal-heading-sm col-md-12 col-sm-12 col-xs-12">
+                <h3>Manage Administrator</h3>
+            </div>
+        </div>
+
+        <div class="row top-bar">
+            <div class="col-md-6">
+                <a href="/Admin/AddAdministrator"><button class="btn-add-detail">add administrator</button></a>
+            </div>
+            <div class="col-md-6">
+                <div class="progress-note-btn">
+                    @using (Html.BeginForm("Administrators", "Admin", FormMethod.Get))
+                    {
+                        <input type="text" name="Search" class="search-enter-progress" placeholder="Search" title="Type
+                                        in a name" />
+                        <a href=""><button type="submit">Search</button></a>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="table-area">
+
+            <div class="progress-table general-big-table" style="overflow-x: auto;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">sr no.</th>
+                            <th scope="col">@Html.ActionLink("FIRST NAME", "Administrators", new { SortOrder = ViewBag.FirstNameSortParam, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">@Html.ActionLink("LAST NAME", "Administrators", new { SortOrder = ViewBag.LastNameSortParam, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">@Html.ActionLink("EMAIL", "Administrators", new { SortOrder = ViewBag.EmailIDSortParam, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">@Html.ActionLink("PHONE NO.", "Administrators", new { SortOrder = ViewBag.DateSortParam, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">@Html.ActionLink("DATE ADDED", "Administrators", new { SortOrder = ViewBag.DateSortParam, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">@Html.ActionLink("ACTIVE", "Administrators", new { SortOrder = ViewBag.ActiveSortParam, Search = Request.QueryString["Search"] })</th>
+                            <th scope="col">action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var count = 0;
+                            if (Model.Count == 0)
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center NoRecord">No Records Found</td>
+                                </tr>
+                            }
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(count + ((Model.PageNumber - 1) * Model.PageSize) + 1)</td>
+                                <td>@item.FirstName</td>
+                                <td>@item.LastName</td>
+                                <td>@item.EmailID</td>
+                                <td>+@adminnumber.Where(x => x.UserID == @item.ID).Select(y => y.PhoneNumberCountryCode + y.PhoneNumber).FirstOrDefault()</td>
+                                <td>@item.ModifiedDate.Value.ToString("dd-MM-yyyy, HH:mm")</td>
+                                <td>
+                                    @if (@item.IsActive == true)
+                                    {
+                                        <text>YES</text>
+                                    }
+                                    else
+                                    {
+                                        <text>NO</text>
+                                    }
+                                </td>
+                                <td>
+                                    <a onclick="return confirm('Are you sure you want to make this Admin Edit?')" href="/Admin/EditAdministrator/@item.ID"><img src="/Content/Admin/images/admin/edit.png" class="edit-action" alt="edit-icon" /></a>
+                                    <a onclick="return confirm('Are you sure you want to make this Admin inactive?')" href="/Admin/DeleteAdministrator/@item.ID"><img src="/Content/Admin/images/admin/delete.png" class="edit-action" alt="edit-icon" /></a>
+                                </td>
+                            </tr>
+                            { count = count + 1; }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-section">
+                <div class="pagination-notes">
+                    <div class="pagination-number">
+                        @Html.PagedListPager(Model, page => Url.Action("Administrators", new
+                        {
+                            page,
+                            Search = Request.QueryString["Search"],
+                            SortOrder = Request.QueryString["SortOrder"]
+                        })
+                            , new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 5 }
+                        )
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
